@@ -3,11 +3,15 @@ module.exports = {
     node: true,
     es2022: true,
     browser: true,
+    'astro/astro': true,
   },
   extends: ['eslint:recommended', 'plugin:astro/recommended', 'plugin:astro/jsx-a11y-strict'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: './tsconfig.eslint.json',
+    extraFileExtensions: ['.astro'],
   },
   rules: {},
   overrides: [

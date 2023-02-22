@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.astro",
+    "test/**/*.ts",
+    "globals.d.ts",
+    "astro.config.mjs",
+    ".eslintrc.js",
+    "d.ts"
+  ]
+}
