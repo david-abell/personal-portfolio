@@ -3,9 +3,16 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Card, Pagination } from 'accessible-astro-components'
 
 import { getCollection } from 'astro:content'
+import type { PaginateFunction } from 'astro'
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-// const { page } = Astro.props
+
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
+  const collection = await getCollection('projects')
+  return paginate(collection, { pageSize: 6 })
+}
+
+const { page } = Astro.props
 ---
 
 <DefaultLayout
@@ -41,14 +48,14 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.pubDate
         }
       </ul>
       <div class="mt-12 grid place-content-center">
-        <!-- <Pagination
+        <Pagination
           firstPage={page.url.prev ? '/projects' : null}
           previousPage={page.url.prev ? page.url.prev : null}
           nextPage={page.url.next ? page.url.next : null}
           lastPage={page.url.next ? `/projects/${Math.round(page.total / page.size)}` : null}
           currentPage={page.currentPage}
           totalPages={Math.round(page.total / page.size)}
-        /> -->
+        />
       </div>
     </div>
   </section>
