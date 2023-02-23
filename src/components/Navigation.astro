@@ -29,16 +29,16 @@ import { DarkMode } from 'accessible-astro-components'
 <script>
   // variables
   const mainNav = document.querySelector('#main-navigation')
-  const mainMenu = mainNav.querySelector('ul')
-  const dropdownMenus = [...document.querySelectorAll('.has-dropdown button')]
+  const mainMenu = mainNav?.querySelector('ul')
+  const dropdownMenus = [...document.querySelectorAll('.has-dropdown button')] as HTMLElement[]
 
   // functions
   const setActiveMenuItem = () => {
-    const mobileDesktopMenus = mainNav.querySelectorAll('nav > ul')
+    const mobileDesktopMenus = mainNav?.querySelectorAll('nav > ul')
     const currenPathname = window.location.pathname
 
-    mobileDesktopMenus.forEach((menu) => {
-      const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')]
+    mobileDesktopMenus?.forEach((menu) => {
+      const menuItems = [...menu.querySelectorAll('a:not([rel*="external"])')] as HTMLAnchorElement[]
 
       menuItems.forEach((menuItem) => {
         if (currenPathname.includes(menuItem.pathname.replaceAll('/', '')) && menuItem.textContent !== 'Home') {
@@ -53,69 +53,69 @@ import { DarkMode } from 'accessible-astro-components'
   }
 
   const checkMenuSize = () => {
-    const mainNavWidth = mainNav.getBoundingClientRect().width
-    const desktopMenuWidth = document.querySelector('.desktop-menu').getBoundingClientRect().width
+    const mainNavWidth = mainNav?.getBoundingClientRect().width || 0
+    const desktopMenuWidth = document.querySelector('.desktop-menu')?.getBoundingClientRect().width || 0
     const logoWidthBuffer = 300
-    const totalMenuWidth = parseInt(desktopMenuWidth) + logoWidthBuffer
+    const totalMenuWidth = desktopMenuWidth + logoWidthBuffer
 
     if (totalMenuWidth >= mainNavWidth) {
-      mainNav.classList.remove('is-desktop')
-      mainNav.classList.add('is-mobile')
+      mainNav?.classList.remove('is-desktop')
+      mainNav?.classList.add('is-mobile')
     } else if (totalMenuWidth <= mainNavWidth) {
-      mainNav.classList.add('is-desktop')
-      mainNav.classList.remove('is-mobile')
+      mainNav?.classList.add('is-desktop')
+      mainNav?.classList.remove('is-mobile')
     }
   }
 
-  const isOutOfViewport = (element) => {
+  const isOutOfViewport = (element: HTMLElement) => {
     const elementBounds = element.getBoundingClientRect()
     return elementBounds.right > (window.innerWidth || document.documentElement.clientWidth)
   }
 
-  const openDropdownMenu = (dropdownMenu) => {
-    const dropdownList = dropdownMenu.parentNode.querySelector('ul')
+  const openDropdownMenu = (dropdownMenu: HTMLElement) => {
+    const dropdownList = dropdownMenu.parentNode?.querySelector('ul')
 
     dropdownMenu.classList.add('show')
     dropdownMenu.setAttribute('aria-expanded', 'true')
 
-    if (isOutOfViewport(dropdownList)) {
+    if (dropdownList && isOutOfViewport(dropdownList)) {
       dropdownList.style.left = 'auto'
     }
   }
 
-  const closeDropdownMenu = (dropdownMenu) => {
+  const closeDropdownMenu = (dropdownMenu: HTMLElement) => {
     dropdownMenu.classList.remove('show')
     dropdownMenu.setAttribute('aria-expanded', 'false')
   }
 
   const closeAllDropdownMenus = () => {
-    for (let i = 0; i < dropdownMenus.length; i++) {
-      closeDropdownMenu(dropdownMenus[i])
+    for (const el of dropdownMenus) {
+      closeDropdownMenu(el)
     }
   }
 
-  const toggleDropdownMenu = (event) => {
-    if (event.target.getAttribute('aria-expanded') === 'false') {
+  const toggleDropdownMenu = (event: MouseEvent) => {
+    if (event.target instanceof HTMLElement && event.target.getAttribute('aria-expanded') === 'false') {
       closeAllDropdownMenus()
       openDropdownMenu(event.target)
     } else {
-      closeDropdownMenu(event.target)
+      closeDropdownMenu(event.target as HTMLElement)
     }
   }
 
   // execution
   mainMenu &&
-    mainMenu.addEventListener('keydown', (event) => {
-      const currentMenuItem = event.target.closest('li')
+    mainMenu.addEventListener('keydown', (event: KeyboardEvent) => {
+      const currentMenuItem = (event.target as HTMLElement).closest('li')
       const menuItems = [...mainMenu.querySelectorAll('.menu-item')]
-      const currentDropdownMenu = event.target.closest('.has-dropdown button')
-      const currentDropdownMenuItem = event.target.closest('.has-dropdown li')
+      const currentDropdownMenu: HTMLElement | null = (event.target as HTMLElement).closest('.has-dropdown button')
+      const currentDropdownMenuItem: HTMLLIElement | null = (event.target as HTMLElement).closest('.has-dropdown li')
       const currentIndex = menuItems.findIndex((item) => item === currentMenuItem)
 
       const key = event.key
       let targetItem
 
-      if (key === 'ArrowRight') {
+      if (currentMenuItem && key === 'ArrowRight') {
         if (menuItems.indexOf(currentMenuItem) === menuItems.length - 1) {
           targetItem = menuItems[0]
         } else {
@@ -123,7 +123,7 @@ import { DarkMode } from 'accessible-astro-components'
         }
       }
 
-      if (key === 'ArrowLeft') {
+      if (currentMenuItem && key === 'ArrowLeft') {
         if (menuItems.indexOf(currentMenuItem) === 0) {
           targetItem = menuItems[menuItems.length - 1]
         } else {
@@ -136,7 +136,7 @@ import { DarkMode } from 'accessible-astro-components'
       }
 
       if (currentDropdownMenu) {
-        const firstDropdownItem = currentDropdownMenu.nextElementSibling.querySelector('li')
+        const firstDropdownItem = currentDropdownMenu.nextElementSibling?.querySelector('li')
 
         if (key === 'ArrowDown') {
           event.preventDefault()
@@ -149,7 +149,7 @@ import { DarkMode } from 'accessible-astro-components'
         }
       }
 
-      if (currentDropdownMenuItem) {
+      if (currentDropdownMenuItem && currentDropdownMenuItem.parentNode) {
         const currentDropdownList = currentDropdownMenuItem.parentNode
         const dropdownMenuItems = [...currentDropdownList.querySelectorAll('li')]
         const currentIndex = dropdownMenuItems.findIndex((item) => item === currentDropdownMenuItem)
@@ -175,14 +175,14 @@ import { DarkMode } from 'accessible-astro-components'
         }
 
         if (key === 'Escape') {
-          const currentDropdownMenu = currentDropdownList.previousElementSibling
-          targetItem = currentDropdownMenu.parentNode
+          const currentDropdownMenu = (currentDropdownList as HTMLElement).previousElementSibling
+          targetItem = currentDropdownMenu?.parentNode
           closeAllDropdownMenus()
         }
       }
 
       if (targetItem) {
-        targetItem.querySelector('a, button, input').focus()
+        ;(targetItem.querySelector('a, button, input') as HTMLInputElement)?.focus()
       }
     })
 
@@ -196,7 +196,10 @@ import { DarkMode } from 'accessible-astro-components'
 
   window.addEventListener('resize', checkMenuSize)
   window.addEventListener('click', (event) => {
-    if (!event.target.hasAttribute('aria-haspopup') && !event.target.classList.contains('submenu-item')) {
+    if (
+      !(event.target as HTMLElement).hasAttribute('aria-haspopup') &&
+      !(event.target as HTMLElement).classList.contains('submenu-item')
+    ) {
       closeAllDropdownMenus()
     }
   })
