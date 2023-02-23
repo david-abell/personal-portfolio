@@ -11,10 +11,10 @@ export async function getStaticPaths() {
     props: project,
   }))
 }
-type Props = CollectionEntry<'projects'>['data']
+type Props = CollectionEntry<'projects'>
 
 const project = Astro.props
-const { title, description } = Astro.props
+const { title, description } = project.data
 const { Content } = await project.render()
 ---
 
