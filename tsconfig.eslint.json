@@ -10,6 +10,6 @@
     "globals.d.ts",
     "astro.config.mjs",
     ".eslintrc.js",
-    "d.ts"
+    "accessible-astro-components.d.ts"
   ]
 }
