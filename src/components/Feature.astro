@@ -25,6 +25,8 @@ const { icon = 'mdi:rocket', title = 'Title' } = Astro.props
     border: 3px solid var(--neutral-700);
     border-radius: 1rem;
     box-shadow: 0 0 0 6px var(--neutral-100);
+    transition: transform ease-in-out 150ms;
+    transform-style: preserve-3d;
 
     @include breakpoint(large) {
       width: 100%;
@@ -33,10 +35,19 @@ const { icon = 'mdi:rocket', title = 'Title' } = Astro.props
     &::after {
       content: '';
       position: absolute;
-      z-index: -1;
       background-color: var(--action-color);
       inset: 1rem -1rem -1rem 1rem;
       border-radius: 1rem;
+      transition: transform ease-in-out 150ms;
+      transform: translateZ(-1px);
+    }
+
+    &:hover {
+      transform: translate(6px, 6px);
+
+      &::after {
+        transform: translate3d(-6px, -6px, -1px);
+      }
     }
   }
 
