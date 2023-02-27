@@ -1,20 +1,20 @@
 ---
 import { Icon } from 'astro-icon'
 
-const { src = '/astronaut-hero-img.webp' } = Astro.props
+const { src = '' } = Astro.props
 ---
 
-<section class="hero my-24">
+<section class="hero my-16">
   <div class="container">
-    <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
+    <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
-        <h1 class="text-center text-6xl md:text-left lg:text-8xl">
-          <slot><span class="text-gradient">Accessible</span> Starter for Astro</slot>
+        <h1 class="min-h-[9rem] text-center text-5xl md:min-h-[6rem] md:text-left lg:min-h-[18rem] lg:text-8xl">
+          <slot>David's <br /><span class="text-gradient typewriter" id="message"></span></slot>
         </h1>
         <div class="flex flex-col gap-3 min-[500px]:flex-row">
-          <a class="button has-icon" href="https://github.com/markteekman/accessible-astro-starter">
+          <a class="button has-icon" href="https://https://github.com/david-abell">
             <Icon pack="ion" name="star-outline" />
-            Star on GitHub
+            View my github
           </a>
           <a
             class="button has-icon color-secondary"
@@ -45,3 +45,73 @@ const { src = '/astronaut-hero-img.webp' } = Astro.props
     -webkit-text-fill-color: transparent;
   }
 </style>
+
+<script>
+  const adjectives = [
+    'dastardly',
+    'daring',
+    'dramatic',
+    'delightful',
+    'delayed',
+    'doomed',
+    'daunting',
+    'daft',
+    'demonstrative',
+    'dreamy',
+    'dreary',
+    'documented',
+  ]
+
+  const nouns = [
+    'displays',
+    'diary',
+    'documentation',
+    'deeds',
+    'documents',
+    'dossiers',
+    'depository',
+    'database',
+    'docket',
+    'demonstrations',
+    'details',
+    'declarations',
+    'designs',
+  ]
+
+  const messageSpan = document.getElementById('message')
+  let message = setRandomWords()
+
+  function setRandomWords() {
+    let randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)] as string
+    let randomNoun = nouns[Math.floor(Math.random() * nouns.length)] as string
+    return `${randomAdjective}\n${randomNoun}`
+  }
+
+  const speed = 50
+  let textPosition = 0
+  let wordCounter = 0
+
+  function typewriter() {
+    if (!messageSpan) {
+      return
+    }
+
+    if (wordCounter >= 4) {
+      return
+    }
+
+    messageSpan.innerText = message.substring(0, textPosition)
+    textPosition += 1
+
+    if (textPosition > message.length) {
+      wordCounter += 1
+      message = wordCounter < 3 ? setRandomWords() : 'developer portfolio'
+      textPosition = 0
+      setTimeout(typewriter, 500)
+    } else {
+      setTimeout(typewriter, speed)
+    }
+  }
+
+  window.addEventListener('load', typewriter)
+</script>
