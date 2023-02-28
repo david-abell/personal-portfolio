@@ -4,11 +4,13 @@ import { Icon } from 'astro-icon'
 const { src = '' } = Astro.props
 ---
 
-<section class="hero my-16">
+<section class="hero my-24">
   <div class="container">
     <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
-        <h1 class="min-h-[9rem] text-center text-5xl md:min-h-[6rem] md:text-left lg:min-h-[18rem] lg:text-8xl">
+        <h1
+          class="min-h-[9rem] text-center text-5xl capitalize md:min-h-[6rem] md:text-left lg:min-h-[18rem] lg:text-8xl"
+        >
           <slot>David's <br /><span class="text-gradient typewriter" id="message"></span></slot>
         </h1>
         <div class="flex flex-col gap-3 min-[500px]:flex-row">
