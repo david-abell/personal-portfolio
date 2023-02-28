@@ -1,6 +1,11 @@
 ---
 import { Icon } from 'astro-icon'
 
+interface Props {
+  icon?: string
+  title?: string
+}
+
 const { icon = 'mdi:rocket', title = 'Title' } = Astro.props
 ---
 

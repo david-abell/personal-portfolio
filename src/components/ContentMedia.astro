@@ -1,6 +1,11 @@
 ---
 import { Media } from 'accessible-astro-components'
 
+interface Props {
+  imgSrc: string
+  reverseImg?: boolean
+}
+
 const { imgSrc, reverseImg = false } = Astro.props
 ---
 

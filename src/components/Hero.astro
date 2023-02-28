@@ -1,7 +1,11 @@
 ---
 import { Icon } from 'astro-icon'
 
-const { src = '' } = Astro.props
+interface Props {
+  imgSrc?: string
+}
+
+const { imgSrc = '' } = Astro.props
 ---
 
 <section class="hero my-24">
@@ -27,7 +31,7 @@ const { src = '' } = Astro.props
           </a>
         </div>
       </div>
-      <img class="hidden lg:block" src={src} alt="" decoding="async" />
+      <img class="hidden lg:block" src={imgSrc} alt="" decoding="async" />
     </div>
   </div>
 </section>
