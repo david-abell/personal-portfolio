@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon'
+
+interface Props {
+  icon?: string
+  title?: string
+}
+
+const { icon = 'mdi:rocket', title = 'Title' } = Astro.props
+---
+
+<div class="smallFeature flex flex-row content-center justify-center gap-1">
+  <Icon name={icon} />
+  <div class="content flex items-center">
+    <h3 class="text-base">{title}</h3>
+  </div>
+</div>
+
+<style lang="scss">
+  @use '../assets/scss/base/breakpoint' as *;
+
+  .smallFeature {
+    position: relative;
+    padding: 1rem 0.5rem;
+    width: calc(100% - 0.5rem);
+    background-color: var(--neutral-100);
+    border: 3px solid var(--neutral-700);
+    border-radius: 1rem;
+    box-shadow: 0 0 0 6px var(--neutral-100);
+    transition: transform ease-in-out 150ms;
+    transform-style: preserve-3d;
+
+    @include breakpoint(large) {
+      width: 100%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: var(--action-color);
+      inset: 0.5rem -1rem -1rem 0.5rem;
+      border-radius: 1rem;
+      transition: transform ease-in-out 150ms;
+      transform: translateZ(-1px);
+    }
+
+    &:hover {
+      transform: translate(3px, 3px);
+
+      &::after {
+        transform: translate3d(-3px, -3px, -1px);
+      }
+    }
+  }
+
+  :global(.smallFeature [astro-icon]) {
+    width: 2rem;
+    color: var(--action-color);
+  }
+
+  :global(.darkmode .smallFeature) {
+    background-color: var(--dark-100);
+    box-shadow: 0 0 0 6px var(--dark-100);
+  }
+</style>
