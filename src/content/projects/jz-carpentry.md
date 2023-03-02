@@ -1,9 +1,9 @@
 ---
-title: 'First post'
-description: 'Lorem ipsum dolor sit amet'
+title: 'JZ Carpentry'
+description: 'Business landing page'
 tech: ['HTML', 'JavaScript', 'Parcel', 'Figma']
-links: { live: 'http://jzcarpentryvt.com', github: 'https://github.com/david-abell/JZCarpentryVT' }
-pubDate: 'Jul 08 2022'
+links: { live: 'jzcarpentryvt.com', github: 'https://github.com/david-abell/JZCarpentryVT' }
+pubDate: 'Mar 01 2023'
 heroImage: '/placeholder-hero.jpg'
 ---
 
