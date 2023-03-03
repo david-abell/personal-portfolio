@@ -1,8 +1,11 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { Icon } from 'astro-icon'
 
 import { CollectionEntry, getCollection } from 'astro:content'
+import FormattedDate from '../../components/FormattedDate.astro'
+import iconMap, { IconMap } from '../../assets/img/iconMap'
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects')
@@ -14,7 +17,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'projects'>
 
 const project = Astro.props
-const { title, description } = project.data
+const { title, description, tech, links, pubDate, heroImage, accentImage } = project.data
 const { Content } = await project.render()
 ---
 
@@ -29,9 +32,25 @@ const { Content } = await project.render()
     </div>
   </div>
   <section class="my-12">
-    <div class="container">
-      <h1>{title}</h1><br />
-      <p>By userId: Test</p>
+    <div class="space-content container">
+      <h1 class="text-6xl">{title}</h1><br />
+      <h2 class="text-3xl">{description}</h2>
+      <p>{(<FormattedDate date={pubDate} />)}</p>
+      <img class="elevation-300 radius-large" src={heroImage} alt="description" />
+      <ul class="my-24 gap-4 lg:grid-cols-8">
+        {
+          tech.map((el) => (
+            <li>
+              <p class="uppercase">
+                <span>
+                  <Icon name={iconMap[el.toLowerCase() as keyof IconMap]} class="inline h-6" />
+                  {el}
+                </span>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
   <section class="my-12">
