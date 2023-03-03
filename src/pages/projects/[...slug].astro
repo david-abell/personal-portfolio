@@ -37,16 +37,14 @@ const { Content } = await project.render()
       <h2 class="text-3xl">{description}</h2>
       <p>{(<FormattedDate date={pubDate} />)}</p>
       <img class="elevation-300 radius-large" src={heroImage} alt="description" />
-      <ul class="my-24 gap-4 lg:grid-cols-8">
+      <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
         {
-          tech.map((el) => (
-            <li>
-              <p class="uppercase">
-                <span>
-                  <Icon name={iconMap[el.toLowerCase() as keyof IconMap]} class="inline h-6" />
-                  {el}
-                </span>
-              </p>
+          tech.sort().map((el) => (
+            <li class="min-w-fit pr-4">
+              <span>
+                <Icon name={iconMap[el.toLowerCase() as keyof IconMap]} class="inline h-6" />
+              </span>
+              <span class="">{el}</span>
             </li>
           ))
         }
