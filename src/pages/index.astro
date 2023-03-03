@@ -8,9 +8,10 @@ import Hero from '../components/Hero.astro'
 import ContentMedia from '../components/ContentMedia.astro'
 import SmallFeature from '../components/SmallFeature.astro'
 import { Icon } from 'astro-icon'
+import FormattedDate from '../components/FormattedDate.astro'
 
 const projects = (await getCollection('projects'))
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3)
 ---
 
@@ -42,7 +43,9 @@ const projects = (await getCollection('projects'))
             <ContentMedia imgSrc={project.data.heroImage ?? ''} reverseImg>
               <p class="uppercase">Project</p>
               <h3 class="align-middle text-6xl">{project.data.title}</h3>
-              <h4>{project.data.title}</h4>
+              <h4>
+                <FormattedDate date={project.data.pubDate} />
+              </h4>
               <p class="text-3xl">{description}</p>
               <a href={'/projects/' + project.slug} class="uppercase !no-underline">
                 Explore
