@@ -28,37 +28,49 @@ const projects = (await getCollection('projects'))
       </ContentMedia>
     </div>
   </section> -->
+  <div class="my-32">
+    <div class="container">
+      <hr class="hero-line border-2" />
+    </div>
+  </div>
 
-  <section class="my-64">
+  <section class="my-16">
     <div class="container">
       <!-- <h2 class="mb-16 text-6xl">Featured Projects</h2> -->
       {
-        projects.map((project) => {
+        projects.map((project, index) => {
           // limit description to last word within 80 characters
           const description =
             project.data.description.length > 80
               ? `${project.data.description.substring(0, 80).replace(/\s\w+$/, '')}...`
               : project.data.description
           return (
-            <ContentMedia imgSrc={project.data.heroImage ?? ''} reverseImg>
-              <p class="uppercase">Project</p>
-              <h3 class="align-middle text-6xl">{project.data.title}</h3>
-              <h4>
-                <FormattedDate date={project.data.pubDate} />
-              </h4>
-              <p class="text-3xl">{description}</p>
-              <a href={'/projects/' + project.slug} class="uppercase !no-underline">
-                Explore
-                <Icon name="arrow" class="ml-5 inline h-4" />
-              </a>
-            </ContentMedia>
+            <>
+              <ContentMedia imgSrc={project.data.heroImage ?? ''} reverseImg>
+                <p class="uppercase">Project</p>
+                <h3 class="align-middle text-6xl">{project.data.title}</h3>
+                <h4>
+                  <FormattedDate date={project.data.pubDate} />
+                </h4>
+                <p class="text-3xl">{description}</p>
+                <a href={'/projects/' + project.slug} class="uppercase !no-underline">
+                  Explore
+                  <Icon name="arrow" class="ml-5 inline h-4" />
+                </a>
+              </ContentMedia>
+              {index !== projects.length - 1 && (
+                <div class="container">
+                  <hr />
+                </div>
+              )}
+            </>
           )
         })
       }
     </div>
   </section>
 
-  <section class="my-64">
+  <section class="mb-64">
     <div class="container">
       <h2 class="mb-16 text-6xl">Technologies</h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6">
