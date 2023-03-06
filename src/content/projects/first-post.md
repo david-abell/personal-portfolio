@@ -1,7 +1,22 @@
 ---
 title: 'First post'
 description: 'Lorem ipsum dolor sit amet'
-tech: ['HTML', 'JavaScript', 'Parcel', 'Figma']
+tech:
+  [
+    'CSS',
+    'HTML',
+    'Tailwind',
+    'Bootstrap',
+    'Typescript',
+    'JavaScript',
+    'React',
+    'Node.js',
+    'Git',
+    'Vite.js',
+    'Figma',
+    'Parcel',
+    'webpack',
+  ]
 links: { live: 'http://jzcarpentryvt.com', github: 'https://github.com/david-abell/JZCarpentryVT' }
 pubDate: 'Jul 08 2022'
 heroImage: '/placeholder-hero.jpg'
