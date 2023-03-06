@@ -1,24 +1,24 @@
 ---
-import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
-import { Icon } from 'astro-icon'
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components';
+import { Icon } from 'astro-icon';
 
-import { CollectionEntry, getCollection } from 'astro:content'
-import FormattedDate from '../../components/FormattedDate.astro'
-import iconMap, { IconMap } from '../../assets/img/iconMap'
+import { CollectionEntry, getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import iconMap, { IconMap } from '../../assets/img/iconMap';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects')
+  const projects = await getCollection('projects');
   return projects.map((project) => ({
     params: { slug: project.slug },
     props: project,
-  }))
+  }));
 }
-type Props = CollectionEntry<'projects'>
+type Props = CollectionEntry<'projects'>;
 
-const project = Astro.props
-const { title, description, tech, links, pubDate, heroImage, accentImage } = project.data
-const { Content } = await project.render()
+const project = Astro.props;
+const { title, description, tech, links, pubDate, heroImage, accentImage } = project.data;
+const { Content } = await project.render();
 ---
 
 <DefaultLayout title={title} description={description} url={title}>

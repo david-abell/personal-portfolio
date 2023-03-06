@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content'
+import { defineCollection, z } from 'astro:content';
 
 export const technologyEnum = z.enum([
   'HTML',
@@ -14,12 +14,12 @@ export const technologyEnum = z.enum([
   'webpack',
   'Figma',
   'Git',
-])
+]);
 
-export type TechnologyEnum = z.infer<typeof technologyEnum>
+export type TechnologyEnum = z.infer<typeof technologyEnum>;
 export type Technologies = {
-  [key in Lowercase<TechnologyEnum>]: string
-}
+  [key in Lowercase<TechnologyEnum>]: string;
+};
 
 const projects = defineCollection({
   // Type-check frontmatter using a schema
@@ -43,6 +43,6 @@ const projects = defineCollection({
     heroImage: z.string().optional(),
     accentImage: z.string().optional(),
   }),
-})
+});
 
-export const collections = { projects }
+export const collections = { projects };

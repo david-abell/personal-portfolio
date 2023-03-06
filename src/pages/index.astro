@@ -1,18 +1,18 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection } from 'astro:content';
 
-import DefaultLayout from '../layouts/DefaultLayout.astro'
-import Hero from '../components/Hero.astro'
+import DefaultLayout from '../layouts/DefaultLayout.astro';
+import Hero from '../components/Hero.astro';
 // import Feature from '../components/Feature.astro'
 // import Counter from '../components/Counter.astro'
-import ContentMedia from '../components/ContentMedia.astro'
-import SmallFeature from '../components/SmallFeature.astro'
-import { Icon } from 'astro-icon'
-import FormattedDate from '../components/FormattedDate.astro'
+import ContentMedia from '../components/ContentMedia.astro';
+import SmallFeature from '../components/SmallFeature.astro';
+import { Icon } from 'astro-icon';
+import FormattedDate from '../components/FormattedDate.astro';
 
 const projects = (await getCollection('projects'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3)
+  .slice(0, 3);
 ---
 
 <DefaultLayout title="Home">
@@ -43,7 +43,7 @@ const projects = (await getCollection('projects'))
           const description =
             project.data.description.length > 80
               ? `${project.data.description.substring(0, 80).replace(/\s\w+$/, '')}...`
-              : project.data.description
+              : project.data.description;
           return (
             <>
               <ContentMedia imgSrc={project.data.heroImage ?? ''} reverseImg>
@@ -64,7 +64,7 @@ const projects = (await getCollection('projects'))
                 </div>
               )}
             </>
-          )
+          );
         })
       }
     </div>

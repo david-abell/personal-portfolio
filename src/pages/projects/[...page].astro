@@ -1,18 +1,18 @@
 ---
-import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { Card, Pagination } from 'accessible-astro-components'
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import { Card, Pagination } from 'accessible-astro-components';
 
-import { getCollection } from 'astro:content'
-import type { PaginateFunction } from 'astro'
+import { getCollection } from 'astro:content';
+import type { PaginateFunction } from 'astro';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+const projects = (await getCollection('projects')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 
 export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
-  const collection = await getCollection('projects')
-  return paginate(collection, { pageSize: 6 })
+  const collection = await getCollection('projects');
+  return paginate(collection, { pageSize: 6 });
 }
 
-const { page } = Astro.props
+const { page } = Astro.props;
 ---
 
 <DefaultLayout

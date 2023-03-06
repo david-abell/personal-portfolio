@@ -1,1 +1,1 @@
-declare module 'accessible-astro-components'
+declare module 'accessible-astro-components';

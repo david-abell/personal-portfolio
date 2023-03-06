@@ -1,11 +1,11 @@
 ---
-import { Icon } from 'astro-icon'
+import { Icon } from 'astro-icon';
 
 interface Props {
-  imgSrc?: string
+  imgSrc?: string;
 }
 
-const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props
+const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props;
 ---
 
 <section class="hero my-24">
@@ -66,7 +66,7 @@ const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props
     'dreamy',
     'dreary',
     'documented',
-  ]
+  ];
 
   const nouns = [
     'displays',
@@ -82,42 +82,42 @@ const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props
     'details',
     'declarations',
     'designs',
-  ]
+  ];
 
-  const messageSpan = document.getElementById('message')
-  let message = setRandomWords()
+  const messageSpan = document.getElementById('message');
+  let message = setRandomWords();
 
   function setRandomWords() {
-    let randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)] as string
-    let randomNoun = nouns[Math.floor(Math.random() * nouns.length)] as string
-    return `${randomAdjective}\n${randomNoun}`
+    let randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)] as string;
+    let randomNoun = nouns[Math.floor(Math.random() * nouns.length)] as string;
+    return `${randomAdjective}\n${randomNoun}`;
   }
 
-  const speed = 50
-  let textPosition = 0
-  let wordCounter = 0
+  const speed = 50;
+  let textPosition = 0;
+  let wordCounter = 0;
 
   function typewriter() {
     if (!messageSpan) {
-      return
+      return;
     }
 
     if (wordCounter >= 4) {
-      return
+      return;
     }
 
-    messageSpan.innerText = message.substring(0, textPosition)
-    textPosition += 1
+    messageSpan.innerText = message.substring(0, textPosition);
+    textPosition += 1;
 
     if (textPosition > message.length) {
-      wordCounter += 1
-      message = wordCounter < 3 ? setRandomWords() : 'developer portfolio'
-      textPosition = 0
-      setTimeout(typewriter, 500)
+      wordCounter += 1;
+      message = wordCounter < 3 ? setRandomWords() : 'developer portfolio';
+      textPosition = 0;
+      setTimeout(typewriter, 500);
     } else {
-      setTimeout(typewriter, speed)
+      setTimeout(typewriter, speed);
     }
   }
 
-  window.addEventListener('load', typewriter)
+  window.addEventListener('load', typewriter);
 </script>

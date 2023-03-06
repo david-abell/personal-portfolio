@@ -1,6 +1,6 @@
-import type { TechnologyEnum } from '../../content/config'
+import type { TechnologyEnum } from '../../content/config';
 
-export type IconMap = { [key in Lowercase<TechnologyEnum>]: string }
+export type IconMap = { [key in Lowercase<TechnologyEnum>]: string };
 
 // type IconMap = Record<Lowercase<TechnologyEnum>, string>
 
@@ -18,6 +18,6 @@ const iconMap: IconMap = {
   figma: 'logos:figma',
   parcel: 'logos:parcel-icon',
   webpack: 'logos:webpack',
-}
+};
 
-export default iconMap
+export default iconMap;
