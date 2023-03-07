@@ -1,11 +1,5 @@
 ---
 import { Icon } from 'astro-icon';
-
-interface Props {
-  imgSrc?: string;
-}
-
-const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props;
 ---
 
 <section class="hero my-24">
@@ -13,7 +7,7 @@ const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props;
     <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
         <h1
-          class="min-h-[9rem] text-center text-5xl capitalize md:min-h-[6rem] md:text-left lg:min-h-[18rem] lg:text-8xl"
+          class="z-10 min-h-[9rem] text-center text-5xl capitalize md:min-h-[6rem] md:text-left lg:min-h-[18rem] lg:text-8xl"
         >
           <slot>David's <br /><span class="text-gradient typewriter" id="message"></span></slot>
         </h1>
@@ -31,7 +25,179 @@ const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props;
           </a>
         </div>
       </div>
-      <img class="hidden lg:block" src={imgSrc} alt="" decoding="async" />
+      <!-- <img class="hidden lg:block" src={imgSrc} alt="" decoding="async" /> -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 392 517">
+        <path fill="none" d="M0 0h392v517H0z"></path>
+        <g clip-path="url(#clip0_0_1)">
+          <g id="body">
+            <path
+              id="neck-fill"
+              fill="#fff"
+              d="M335 355s-5 27-109 58c-30 8-106 22-106 22s64-39 61-43c1-6-8-8-9-14v-19c-7-24 36-35 52-50 21-21 38-85 49-67 3 1 16-1 16-1l9 33 8 30s7 21 15 33c4 7 14 18 14 18Z"
+            ></path>
+            <path
+              id="shoulders"
+              fill="#D9D9D9"
+              d="M388 438c20 32-55-15-104-15-48 0-121 103-146 93 0 0-19-73 47-104 90-43 90-158 203 26Z"></path>
+            <path id="Chin-shadow" fill="#D9D9D9" d="M224 351c10 7-19 34-44 26-4-15 9-18 18-24 5-3 12-12 26-2Z"></path>
+            <g id="Group 1">
+              <path
+                id="Neck"
+                stroke="#000"
+                stroke-width="3"
+                d="m336 355-1-1a93 93 0 0 1-26-41l-15-47-2-11c-2-7-3-15-3-22 0-6-7-9-11-5l-106 94v38c1 4-1 16 1 21 1 3 5 4 7 7s1 7-2 9l-60 39"
+              ></path>
+            </g>
+          </g>
+          <g id="head">
+            <path
+              id="glasses-inverted"
+              fill="currentColor"
+              d="M73 229v2-2Zm-24-33h3-3Zm31 34h3l-1-5h-2v5Zm-30-36v3-3Zm-7-1a3 3 0 0 0 0 5v-5Zm25 2v3-3Zm7 4 3 1 1-5h-2l-2 4Zm-2 27-10-1-5-5-3-10-3-14-5 1 3 14 4 11 7 8c3 1 7 2 12 1v-5Zm-21-30v-6l5-4c4-3 10-5 17-7l-1-4c-7 1-14 3-19 6-3 2-5 4-6 7-2 2-2 5-1 9l5-1Zm21 35 7-1v-5l-7 1v5Zm-24-39-6 1v5l7-1-1-5Zm19 6 7 1 2-4-8-2-1 5Zm-18-1c6-1 12-1 18 1l1-5c-6-2-13-2-20-1l1 5Z"
+            ></path>
+            <g id="Face">
+              <path
+                id="face-2"
+                fill="#fff"
+                stroke="#000"
+                stroke-width="3"
+                d="M108 304c13 33 13 63 57 55 18-4 54-28 78-55 0 0 20-24 24-37l5-24-3-10c4 12 12 11 14 10l1-1c11-5 21-29 21-43 0-16-2-26-3-30l-2-4c-3-4-9-7-17-5l-2 1c-6 5-15 3-18-3l-53-88-44-4h-3c-82 4-104 45-90 110l9 33c2 4 1 14 0 19-7 44 15 50 26 76Z"
+              ></path>
+            </g>
+            <g id="ear">
+              <path
+                id="ear-inner"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-width="3"
+                d="m270 193 3-4c18-26 23-22 21 9v2l-1 6-2 9c0 3-3 6-5 7l-9 3c-5 3-10-2-8-7v-1l1-3v0c-1-3 2-6 5-5l9 4"
+              ></path>
+              <path id="ear-shadow" fill="#D9D9D9" d="M288 197c-2 6-3 8-7 10h-4l2-16c3-5 12-10 9 6Z"></path>
+            </g>
+            <g id="beard" fill="#D9D9D9" fill-opacity=".3">
+              <path id="Mustache" d="M153 271c12-3 37-11 37-14-20-3-32 6-53 1-15 10-25 10-31 11 5 4 16 6 47 2Z"></path>
+              <path
+                id="beard-2"
+                d="m219 271 28-81a9 9 0 0 1 18 3l-2 58c-1 15-6 29-14 41l-6 9-17 18-19 15-14 10-12 6-10 5-12 3h-12l-6-2a29 29 0 0 1-14-9v-1l-4-6-2-5-5-12-6-19c-1-2 2-4 3-2l21 30c2 2 4 3 6 2l29-7c10-3 19-8 25-16l9-11c7-9 13-18 16-29Z"
+              ></path>
+            </g>
+            <g id="lips">
+              <path
+                id="lip-lower"
+                fill="#D9D9D9"
+                d="M185 270c8 0-21 33-42 33-18-2-20-14-25-18-7-6-2-4 12 0 13 3 48-14 55-15Z"></path>
+              <path
+                id="Lip-line"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-width="3"
+                d="m116 281 8 3c10 4 20 2 29-2l8-3 24-8"></path>
+            </g>
+            <g id="nose">
+              <path
+                id="nose-2"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-width="2"
+                d="m117 177-13 61c-1 3-1 7 1 9v0c4 7 12 9 18 4l5-3 9-3 19-2"></path>
+              <path id="nose-shadow" fill="#D9D9D9" d="M145 215c7 14 11 14-4 14-40 14-22 5-7-10-5-16-15-24-5-36l16 32Z"
+              ></path>
+            </g>
+            <g id="eyes">
+              <g id="eye-right">
+                <mask
+                  id="mask0_0_1"
+                  width="25"
+                  height="8"
+                  x="155"
+                  y="178"
+                  maskUnits="userSpaceOnUse"
+                  style="mask-type:alpha"
+                >
+                  <path id="eye-white-mask" fill="#fff" d="M179 182c0 1-1 2-4 2l-9 2h-10c3-6 4-7 9-8l10 1 4 3Z"></path>
+                </mask>
+                <g mask="url(#mask0_0_1)">
+                  <ellipse
+                    id="eye-white"
+                    cx="168.6"
+                    cy="182.4"
+                    fill="#D9D9D9"
+                    rx="19.5"
+                    ry="9.8"
+                    transform="rotate(-9 169 182)"></ellipse>
+                  <circle
+                    id="pupil"
+                    cx="170.2"
+                    cy="182.2"
+                    r="3.5"
+                    stroke="#000"
+                    stroke-width="3"
+                    transform="rotate(-14 170 182)"></circle>
+                </g>
+              </g>
+              <g id="eye-left">
+                <mask
+                  id="mask1_0_1"
+                  width="23"
+                  height="12"
+                  x="83"
+                  y="192"
+                  maskUnits="userSpaceOnUse"
+                  style="mask-type:alpha"
+                >
+                  <path id="eye-white-mask_2" fill="#fff" d="m106 193-3 4c-2 1-5 3-9 3l-10 3c2-6 3-7 8-10l9-1 5 1Z"
+                  ></path>
+                </mask>
+                <g mask="url(#mask1_0_1)">
+                  <ellipse
+                    id="eye-white_2"
+                    cx="95.9"
+                    cy="196.8"
+                    fill="#D9D9D9"
+                    rx="19.5"
+                    ry="9.8"
+                    transform="rotate(-23 96 197)"></ellipse>
+                  <circle
+                    id="pupil_2"
+                    cx="98.2"
+                    cy="195.2"
+                    r="3.5"
+                    stroke="#000"
+                    stroke-width="3"
+                    transform="rotate(-14 98 195)"></circle>
+                </g>
+              </g>
+            </g>
+            <g id="eyebrows" fill="#D9D9D9">
+              <path id="eyebrow-left" d="M75 178c5-1 7 0 13 1 9 2 9 2 14 0 1 0-4-6-14-4-8 2-15-8-13 3Z"></path>
+              <path id="eyebrow-right" d="M195 166c-11-2-19-3-30-1-16 3-16 8-29 5-2-1 13-10 28-10 18-1 25 0 31 6Z"
+              ></path>
+            </g>
+            <path
+              id="glasses"
+              fill="#000"
+              d="M75 174a3 3 0 0 0 0 5v-5Zm126-4 3-1-3 1Zm-41 38-1-2 1 2Zm0-53v-3 3Zm-44 23-1-2 1 2Zm84-20a3 3 0 0 0 0 5v-5Zm3 2v-2 2Zm26 0v-2 2Zm34 7a2 2 0 1 0 1-4l-1 4ZM84 224h-3l1 5h2v-5Zm-9-45 17-2 8 1 4 4 1 9h5l-2-11c-1-3-3-5-6-7l-10-1-17 2v5Zm124-9c2 8 3 13 2 17 0 3-1 6-4 8-2 2-6 3-13 5l-25 6 2 5 25-6 14-6c4-3 6-7 6-12 1-5 0-11-2-18l-5 1Zm-40 36h-11c-3-1-6-3-8-6-5-6-8-15-12-25l-4 2c3 10 7 19 12 26 3 3 6 6 10 7 4 2 9 2 15 1l-2-5Zm-31-30c0-3 0-5 2-7l8-5c6-4 15-6 22-7v-5c-8 1-17 4-25 7l-9 7c-2 3-3 7-2 11l4-1Zm32-19 20-3 11 1c4 2 6 6 8 15l5-1c-2-9-4-16-11-19l-13-1-20 3v5Zm-54 27 10-4-1-4-10 4 1 4Zm10-4 10-1v-5l-11 2 1 4Zm84-17h3v-5h-3v5Zm29 0 34 4 1-4-35-5v5Zm-26 0h26v-5h-26v5Zm-98 28-1 16c-1 5-2 8-4 10-2 4-7 6-16 7v5c10-1 16-3 20-9 2-3 4-7 4-12l2-17h-5Z"
+            ></path>
+            <g id="hair">
+              <path
+                fill="#D9D9D9"
+                d="m44 57 35-1c1 0 4-5 2-6l1-2 19-5 5-1c7 1 18 3 19 2 2-2-20-16-19-16l30 1v-8c-2-5-4-9-2-9 1-1 2 4 2 9l5 9 3-10c1-2 4-2 4 0 1 3 4 3 5 0v-5c1-2 4-3 6-1l2 5c3 4 9 3 9-2V9v12c1 5 8 6 9 1 1-4 7-4 8 0l2 7c3 7 13 5 13-2l1-17 1 23c1 9 15 12 18 2 4-9 17-7 18 3l2 23c1 8 11 10 14 3 2-4 8-6 12-2l8 7 6 9 2 15c3 13 3-8 13 2 2 1 14 42 0 47-4 1 0 9 2 16 2 3-1 4-3 2l-4-2-6 1-6 3-7 6c-3 3-7 1-8-2l-3-3-25-10c-2-1-4-4-2-7l2-5c2-5-4-9-7-5-2 3-6 3-8 0l-19-33v-2l-10-25c-1-6-9-4-9 1l-1 15c0 4-5 4-6 1-1-4-6-3-6 0l-1 30c0 4-5 5-7 2l-4-7c-1-3-6-1-5 2s-3 5-4 2l-15-18c-3-4-10-1-9 5 2 5-4 9-8 5l-6-6c-5-5-12-1-11 5s-5 10-10 7l-3-2c-4-3-10-2-12 3l-4 12c-1 2-3 3-4 2l-1-1-1-2 1-3c1-1 0-2-1-1l-1-1 1-5c1-2 0-4-3-4l-4-2 8-8c1-2 0-5-2-4-2 0-3-2-2-3l3-8c1-2 0-6-2-7l-10-7c-3-2-2-6 1-7 4-2 3-7-1-8H44c-6-1-6-6 0-7Z"
+              ></path>
+              <path
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-width="3"
+                d="M141 30c-4-6-10-18-7-18 2-1 2 11 2 17m5 1-5-1m5 1 3-10c1-2 4-2 4 0v0c1 3 4 3 5 0v-5c1-2 4-3 6-1l2 5c3 4 9 3 9-2V9v12c1 5 8 6 9 1v0c1-4 7-4 8 0l2 7c3 7 13 5 13-2l1-17 1 23c1 9 15 12 18 2v0c4-9 17-7 18 3l2 23c1 8 11 10 14 3v0c2-4 8-6 12-2l8 7 6 9 2 15c3 13 3-8 13 2v0c2 1 14 42 0 47-4 1 0 9 2 16 2 3-1 4-3 2v0l-4-2-6 1-6 3-7 6c-3 3-7 1-8-2v0l-3-3-25-10c-2-1-4-4-2-7l2-5c2-5-4-9-7-5v0c-2 3-6 3-8 0l-19-33v-2l-10-25c-1-6-9-4-9 1l-1 15c0 4-5 4-6 1v0c-1-4-6-3-6 0l-1 30c0 4-5 5-7 2l-4-7c-1-3-6-1-5 2v0c1 3-3 5-4 2l-15-18c-3-4-10-1-9 5v0c2 5-4 9-8 5l-6-6c-5-5-12-1-11 5v0c1 6-5 10-10 7l-3-2c-4-3-10-2-12 3l-4 12c-1 2-3 3-4 2l-1-1-1-2 1-3c1-1 0-2-1-1v0l-1-1 1-5c1-2 0-4-3-4l-4-2 8-8c1-2 0-5-2-4v0c-2 0-3-2-2-3l3-8c1-2 0-6-2-7l-10-7c-3-2-2-6 1-7v0c4-2 3-7-1-8H44c-6-1-6-6 0-7l35-1c1 0 4-5 2-6v0l1-2 19-5 5-1c7 1 18 3 19 2 2-2-20-16-19-16l30 1"
+              ></path>
+            </g>
+          </g>
+        </g>
+        <defs>
+          <clipPath id="clip0_0_1">
+            <path fill="#fff" d="M0 0h392v517H0z"></path>
+          </clipPath>
+        </defs>
+      </svg>
     </div>
   </div>
 </section>
@@ -49,6 +215,23 @@ const { imgSrc = 'astronaut-hero-img.webp' } = Astro.props;
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes glasses {
+    0% {
+      transform: translateY(-0.5);
+    }
+
+    100% {
+      transform: translateY(1%);
+    }
+  }
+
+  path[id*='glasses'] {
+    animation-duration: 3s;
+    animation-name: glasses;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
   }
 </style>
 
