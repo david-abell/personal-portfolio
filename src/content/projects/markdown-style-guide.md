@@ -4,7 +4,7 @@ description: 'Here is a sample of some basic Markdown syntax that can be used wh
 tech: ['HTML', 'JavaScript', 'Parcel', 'Figma']
 links: { live: 'jzcarpentryvt.com', github: 'https://github.com/david-abell/JZCarpentryVT' }
 pubDate: 'Jul 01 2022'
-heroImage: '/placeholder-hero.jpg'
+images: { hero: '/placeholder-hero.jpg' }
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.

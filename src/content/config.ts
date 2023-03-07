@@ -40,8 +40,10 @@ const projects = defineCollection({
       .string()
       .optional()
       .transform((str) => (str ? new Date(str) : undefined)),
-    heroImage: z.string().optional(),
-    accentImage: z.string().optional(),
+    images: z.object({
+      hero: z.string(),
+      graphic: z.string().optional(),
+    }),
   }),
 });
 

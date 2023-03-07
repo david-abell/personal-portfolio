@@ -46,7 +46,11 @@ const projects = (await getCollection('projects'))
               : project.data.description;
           return (
             <>
-              <ContentMedia imgSrc={project.data.heroImage ?? ''} reverseImg>
+              <ContentMedia
+                imgSrc={project.data.images.hero ?? ''}
+                graphicSrc={project.data.images.graphic ?? ''}
+                reverseImg
+              >
                 <p class="uppercase">Project</p>
                 <h3 class="align-middle text-6xl">{project.data.title}</h3>
                 <h4>
