@@ -41,8 +41,8 @@ const projects = (await getCollection('projects'))
         projects.map((project, index) => {
           // limit description to last word within 80 characters
           const description =
-            project.data.description.length > 80
-              ? `${project.data.description.substring(0, 80).replace(/\s\w+$/, '')}...`
+            project.data.description.length > 140
+              ? `${project.data.description.substring(0, 140).replace(/\s\w+$/, '')}...`
               : project.data.description;
           return (
             <>
