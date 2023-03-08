@@ -3,7 +3,7 @@ title: 'JZ Carpentry'
 description: 'A landing page showcasing beautiful home and business remodels, and a contact form for new client inquiries.'
 tech: ['HTML', 'JavaScript', 'Parcel', 'Figma']
 links: { live: 'jzcarpentryvt.com', github: 'https://github.com/david-abell/JZCarpentryVT' }
-pubDate: 'Mar 01 2023'
+pubDate: 'May 17 2022'
 images: { hero: 'jzcarpentry-hero.webp', graphic: 'jzcarpentry-graphic.svg' }
 ---
 
