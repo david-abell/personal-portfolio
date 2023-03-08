@@ -36,7 +36,7 @@ const { Content } = await project.render();
       <h1 class="text-6xl">{title}</h1><br />
       <h2 class="text-3xl">{description}</h2>
       <p>{(<FormattedDate date={pubDate} />)}</p>
-      <img class="elevation-300 radius-large" src={images.hero} alt="description" />
+      <img class="elevation-300 radius-large" src={'/img/' + images.hero} alt="description" />
       <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
         {
           tech.sort().map((el) => (
@@ -47,6 +47,18 @@ const { Content } = await project.render();
               <span class="">{el}</span>
             </li>
           ))
+        }
+      </ul>
+      <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
+        <li class="min-w-fit pr-4">
+          <a href={links.github}>View code on Github</a>
+        </li>
+        {
+          links.live && (
+            <li class="min-w-fit pr-4">
+              <a href={links.live}>See it live</a>
+            </li>
+          )
         }
       </ul>
     </div>
