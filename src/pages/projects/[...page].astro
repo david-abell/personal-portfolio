@@ -40,7 +40,7 @@ const { page } = Astro.props;
                 url={'/projects/' + project.data.title.replaceAll(' ', '-').toLowerCase()}
                 title={project.data.title}
                 footer={'userId:' + 'fake-id'}
-                img={project.data.images.hero}
+                img={'/img/' + project.data.images.hero}
               >
                 {project.data.description}
               </Card>

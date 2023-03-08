@@ -44,13 +44,10 @@ const projects = (await getCollection('projects'))
             project.data.description.length > 140
               ? `${project.data.description.substring(0, 140).replace(/\s\w+$/, '')}...`
               : project.data.description;
+          const { hero, graphic } = project.data.images;
           return (
             <>
-              <ContentMedia
-                imgSrc={project.data.images.hero ?? ''}
-                graphicSrc={project.data.images.graphic ?? ''}
-                reverseImg
-              >
+              <ContentMedia imgSrc={'/img/' + hero} graphicSrc={graphic ? '/img/' + graphic : ''} reverseImg>
                 <p class="uppercase">Project</p>
                 <h3 class="align-middle text-6xl">{project.data.title}</h3>
                 <h4>
