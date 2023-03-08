@@ -2,6 +2,7 @@
 
 const iconMap = {
   css: 'logos:css-3',
+  'css modules': 'logos:css-3',
   html: 'logos:html-5',
   tailwind: 'logos:tailwindcss-icon',
   bootstrap: 'logos:bootstrap',
@@ -15,7 +16,7 @@ const iconMap = {
   parcel: 'logos:parcel-icon',
   webpack: 'logos:webpack',
   'chart.js': 'ic:round-area-chart',
-  'react query': 'ic:round-flag-circle',
+  'd3.js': 'logos:d3',
 };
 
 export type IconMap = keyof typeof iconMap;

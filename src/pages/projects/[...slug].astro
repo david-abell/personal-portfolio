@@ -42,7 +42,7 @@ const { Content } = await project.render();
           tech.sort().map((el) => (
             <li class="min-w-fit pr-4">
               <span>
-                <Icon name={iconMap[el.toLowerCase() as IconMap]} class="inline h-6" />
+                <Icon name={iconMap[el.toLowerCase() as IconMap] || 'ic:round-flag-circle'} class="inline h-6" />
               </span>
               <span class="">{el}</span>
             </li>
