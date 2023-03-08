@@ -3,7 +3,7 @@ title: 'Markdown Style Guide'
 description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
 tech: ['HTML', 'JavaScript', 'Parcel', 'Figma']
 links: { live: 'jzcarpentryvt.com', github: 'https://github.com/david-abell/JZCarpentryVT' }
-pubDate: 'Jul 01 2022'
+pubDate: 'Jul 01 2000'
 images: { hero: '/placeholder-hero.jpg' }
 ---
 
