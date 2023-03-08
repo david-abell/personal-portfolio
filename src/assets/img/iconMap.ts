@@ -1,10 +1,6 @@
-import type { TechnologyEnum } from '../../content/config';
-
-export type IconMap = { [key in Lowercase<TechnologyEnum>]: string };
-
 // type IconMap = Record<Lowercase<TechnologyEnum>, string>
 
-const iconMap: IconMap = {
+const iconMap = {
   css: 'logos:css-3',
   html: 'logos:html-5',
   tailwind: 'logos:tailwindcss-icon',
@@ -21,5 +17,7 @@ const iconMap: IconMap = {
   'chart.js': 'ic:round-area-chart',
   'react query': 'ic:round-flag-circle',
 };
+
+export type IconMap = keyof typeof iconMap;
 
 export default iconMap;

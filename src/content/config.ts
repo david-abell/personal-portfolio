@@ -1,34 +1,11 @@
 import { defineCollection, z } from 'astro:content';
 
-export const technologyEnum = z.enum([
-  'HTML',
-  'CSS',
-  'Tailwind',
-  'Bootstrap',
-  'JavaScript',
-  'Typescript',
-  'React',
-  'Node.js',
-  'Vite.js',
-  'Parcel',
-  'webpack',
-  'Figma',
-  'Git',
-  'Chart.js',
-  'React Query',
-]);
-
-export type TechnologyEnum = z.infer<typeof technologyEnum>;
-export type Technologies = {
-  [key in Lowercase<TechnologyEnum>]: string;
-};
-
 const projects = defineCollection({
   // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    tech: z.array(technologyEnum),
+    tech: z.string().array(),
     links: z.object({
       github: z.string(),
       live: z.string().optional(),
