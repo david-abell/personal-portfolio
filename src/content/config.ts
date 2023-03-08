@@ -14,6 +14,8 @@ export const technologyEnum = z.enum([
   'webpack',
   'Figma',
   'Git',
+  'Chart.js',
+  'React Query',
 ]);
 
 export type TechnologyEnum = z.infer<typeof technologyEnum>;

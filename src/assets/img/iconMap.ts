@@ -18,6 +18,8 @@ const iconMap: IconMap = {
   figma: 'logos:figma',
   parcel: 'logos:parcel-icon',
   webpack: 'logos:webpack',
+  'chart.js': 'ic:round-area-chart',
+  'react query': 'ic:round-flag-circle',
 };
 
 export default iconMap;
