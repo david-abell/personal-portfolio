@@ -108,13 +108,13 @@ import { Icon } from 'astro-icon';
                 <mask
                   id="mask0_0_1"
                   width="25"
-                  height="8"
+                  height="9"
                   x="155"
                   y="178"
                   maskUnits="userSpaceOnUse"
                   style="mask-type:alpha"
                 >
-                  <path id="eye-white-mask" fill="#fff" d="M179 182c0 1-1 2-4 2l-9 2h-10c3-6 4-7 9-8l10 1 4 3Z"></path>
+                  <path id="eye-white-mask" fill="#fff" d="m179 182-4 3-9 2h-10c3-7 4-8 9-9l10 1 4 3Z"></path>
                 </mask>
                 <g mask="url(#mask0_0_1)">
                   <ellipse
@@ -125,27 +125,23 @@ import { Icon } from 'astro-icon';
                     rx="19.5"
                     ry="9.8"
                     transform="rotate(-9 169 182)"></ellipse>
-                  <circle
-                    id="pupil"
-                    cx="170.2"
-                    cy="182.2"
-                    r="3.5"
-                    stroke="#000"
-                    stroke-width="3"
-                    transform="rotate(-14 170 182)"></circle>
+                  <g id="pupil-right">
+                    <circle cx="169.2" cy="182.2" r="3.5" stroke="#000" stroke-width="3" transform="rotate(-14 169 182)"
+                    ></circle>
+                  </g>
                 </g>
               </g>
               <g id="eye-left">
                 <mask
                   id="mask1_0_1"
                   width="23"
-                  height="12"
-                  x="83"
+                  height="13"
+                  x="84"
                   y="192"
                   maskUnits="userSpaceOnUse"
                   style="mask-type:alpha"
                 >
-                  <path id="eye-white-mask_2" fill="#fff" d="m106 193-3 4c-2 1-5 3-9 3l-10 3c2-6 3-7 8-10l9-1 5 1Z"
+                  <path id="eye-white-mask_2" fill="#fff" d="m106 194-3 4-8 4-11 2c2-7 3-8 8-11l9-1c3 0 5 1 5 2Z"
                   ></path>
                 </mask>
                 <g mask="url(#mask1_0_1)">
@@ -157,14 +153,10 @@ import { Icon } from 'astro-icon';
                     rx="19.5"
                     ry="9.8"
                     transform="rotate(-23 96 197)"></ellipse>
-                  <circle
-                    id="pupil_2"
-                    cx="98.2"
-                    cy="195.2"
-                    r="3.5"
-                    stroke="#000"
-                    stroke-width="3"
-                    transform="rotate(-14 98 195)"></circle>
+                  <g id="pupil-left">
+                    <circle cx="99.2" cy="195.2" r="3.5" stroke="#000" stroke-width="3" transform="rotate(-14 99 195)"
+                    ></circle>
+                  </g>
                 </g>
               </g>
             </g>
@@ -303,4 +295,23 @@ import { Icon } from 'astro-icon';
   }
 
   window.addEventListener('load', typewriter);
+
+  // track eyes to mouse movement
+  const leftPupil = document.getElementById('pupil-left');
+  const rightPupil = document.getElementById('pupil-right');
+  document.addEventListener('mousemove', function (e) {
+    if (!leftPupil || !rightPupil) return;
+    let x = e.clientX;
+    let y = e.clientY;
+    const leftPupilRect = leftPupil.getBoundingClientRect();
+    const rightPupilRect = leftPupil.getBoundingClientRect();
+    const radius = 4;
+    const leftAngle = Math.atan2(y - leftPupilRect.top, x - leftPupilRect.left) + Math.PI;
+    const rightAngle = Math.atan2(y - rightPupilRect.top, x - rightPupilRect.left) + Math.PI;
+    leftPupil.setAttribute('transform', `translate(${-radius * Math.cos(leftAngle)},${-radius * Math.sin(leftAngle)})`);
+    rightPupil.setAttribute(
+      'transform',
+      `translate(${-radius * Math.cos(rightAngle)},${-radius * Math.sin(rightAngle)})`
+    );
+  });
 </script>
