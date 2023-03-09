@@ -38,7 +38,7 @@ const projects = (await getCollection('projects'))
     <div class="container">
       <!-- <h2 class="mb-16 text-6xl">Featured Projects</h2> -->
       {
-        projects.map((project, index) => {
+        projects.map((project) => {
           // limit description to last word within 80 characters
           const description =
             project.data.description.length > 140
@@ -59,11 +59,9 @@ const projects = (await getCollection('projects'))
                   <Icon name="arrow" class="ml-5 inline h-4" />
                 </a>
               </ContentMedia>
-              {index !== projects.length - 1 && (
-                <div class="container">
-                  <hr />
-                </div>
-              )}
+              <div class="container">
+                <hr />
+              </div>
             </>
           );
         })
