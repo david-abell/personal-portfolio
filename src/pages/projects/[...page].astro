@@ -35,7 +35,7 @@ const { page } = Astro.props;
                 url={BASE_URL + '/projects/' + project.data.title.replaceAll(' ', '-').toLowerCase()}
                 title={project.data.title}
                 footer={'userId:' + 'fake-id'}
-                img={'/img/' + project.data.images.hero}
+                img={BASE_URL + '/img/' + project.data.images.hero}
               >
                 {project.data.description}
               </Card>
@@ -45,10 +45,10 @@ const { page } = Astro.props;
       </ul>
       <div class="mt-12 grid place-content-center">
         <Pagination
-          firstPage={page.url.prev ? '/projects' : null}
+          firstPage={page.url.prev ? BASE_URL + '/projects' : null}
           previousPage={page.url.prev ? page.url.prev : null}
           nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `/projects/${Math.round(page.total / page.size)}` : null}
+          lastPage={page.url.next ? `${BASE_URL}/projects/${Math.round(page.total / page.size)}` : null}
           currentPage={page.currentPage}
           totalPages={Math.round(page.total / page.size)}
         />
