@@ -8,6 +8,6 @@ export const BASE_URL = '/personal-portfolio';
 // https://astro.build/config
 export default defineConfig({
   integrations: [compress(), mdx(), tailwind()],
-  site: 'https://github.com/david-abell',
+  site: 'https://david-abell.github.io',
   base: BASE_URL,
 });
