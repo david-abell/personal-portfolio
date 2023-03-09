@@ -17,6 +17,7 @@ const iconMap = {
   webpack: 'logos:webpack',
   'chart.js': 'ic:round-area-chart',
   'd3.js': 'logos:d3',
+  'express.js': 'simple-icons:express',
 };
 
 export type IconMap = keyof typeof iconMap;
