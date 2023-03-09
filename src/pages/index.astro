@@ -10,6 +10,8 @@ import SmallFeature from '../components/SmallFeature.astro';
 import { Icon } from 'astro-icon';
 import FormattedDate from '../components/FormattedDate.astro';
 
+import { BASE_URL } from '../../astro.config.mjs';
+
 const projects = (await getCollection('projects'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 5);
@@ -47,14 +49,18 @@ const projects = (await getCollection('projects'))
           const { hero, graphic } = project.data.images;
           return (
             <>
-              <ContentMedia imgSrc={'/img/' + hero} graphicSrc={graphic ? '/img/' + graphic : ''} reverseImg>
+              <ContentMedia
+                imgSrc={BASE_URL + '/img/' + hero}
+                graphicSrc={graphic ? BASE_URL + '/img/' + graphic : ''}
+                reverseImg
+              >
                 <p class="uppercase">Project</p>
                 <h3 class="align-middle text-6xl">{project.data.title}</h3>
                 <h4>
                   <FormattedDate date={project.data.pubDate} />
                 </h4>
                 <p class="text-3xl">{description}</p>
-                <a href={'/projects/' + project.slug} class="uppercase !no-underline">
+                <a href={BASE_URL + '/projects/' + project.slug} class="uppercase !no-underline">
                   Explore
                   <Icon name="arrow" class="ml-5 inline h-4" />
                 </a>

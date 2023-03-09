@@ -3,6 +3,8 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components';
 import { Icon } from 'astro-icon';
 
+import { BASE_URL } from '../../../astro.config.mjs';
+
 import { CollectionEntry, getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import iconMap, { IconMap } from '../../assets/img/iconMap';
@@ -25,8 +27,8 @@ const { Content } = await project.render();
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>
-        <BreadcrumbsItem href="/" label="Home" />
-        <BreadcrumbsItem href="/projects" label="Projects" />
+        <BreadcrumbsItem href={BASE_URL + '/'} label="Home" />
+        <BreadcrumbsItem href={BASE_URL + '/projects'} label="Projects" />
         <BreadcrumbsItem currentPage={true} label={title} />
       </Breadcrumbs>
     </div>
@@ -36,7 +38,7 @@ const { Content } = await project.render();
       <h1 class="text-6xl">{title}</h1><br />
       <h2 class="text-3xl">{description}</h2>
       <p>{(<FormattedDate date={pubDate} />)}</p>
-      <img class="elevation-300 radius-large" src={'/img/' + images.hero} alt="description" />
+      <img class="elevation-300 radius-large" src={BASE_URL + '/img/' + images.hero} alt="description" />
       <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
         {
           tech.sort().map((el) => (
