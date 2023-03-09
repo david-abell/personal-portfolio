@@ -15,18 +15,11 @@ export async function getStaticPaths({ paginate }: { paginate: PaginateFunction 
 const { page } = Astro.props;
 ---
 
-<DefaultLayout
-  title="Projects"
-  description="An example of a blog with dynamic content fetched from JSONPlaceholder using the title, body and userId."
->
+<DefaultLayout title="Projects" description="A more complete list of current and past projects.">
   <section class="my-12">
     <div class="space-content container">
       <h1>Projects</h1>
-      <p class="text-2xl">
-        An example of a blog with dynamic content fetched from <a href="https://jsonplaceholder.typicode.com/posts"
-          >JSONPlaceholder</a
-        > using the title, body and userId. The Accessible Astro Card Component is used here to display al the posts.
-      </p>
+      <p class="text-2xl">A more complete list of some of my current and past projects.</p>
     </div>
   </section>
   <section class="my-12">
