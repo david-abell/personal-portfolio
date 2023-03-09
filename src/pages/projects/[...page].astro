@@ -2,8 +2,6 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { Card, Pagination } from 'accessible-astro-components';
 
-import { BASE_URL } from '../../../astro.config.mjs';
-
 import { getCollection } from 'astro:content';
 import type { PaginateFunction } from 'astro';
 
@@ -32,10 +30,10 @@ const { page } = Astro.props;
           projects.map((project) => (
             <li>
               <Card
-                url={BASE_URL + '/projects/' + project.data.title.replaceAll(' ', '-').toLowerCase()}
+                url={`${import.meta.env.BASE_URL}projects/${project.data.title.replaceAll(' ', '-').toLowerCase()}`}
                 title={project.data.title}
                 footer={'userId:' + 'fake-id'}
-                img={BASE_URL + '/img/' + project.data.images.hero}
+                img={`${import.meta.env.BASE_URL}img/${project.data.images.hero}`}
               >
                 {project.data.description}
               </Card>
@@ -45,10 +43,10 @@ const { page } = Astro.props;
       </ul>
       <div class="mt-12 grid place-content-center">
         <Pagination
-          firstPage={page.url.prev ? BASE_URL + '/projects' : null}
+          firstPage={page.url.prev ? `${import.meta.env.BASE_URL}projects` : null}
           previousPage={page.url.prev ? page.url.prev : null}
           nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `${BASE_URL}/projects/${Math.round(page.total / page.size)}` : null}
+          lastPage={page.url.next ? `${import.meta.env.BASE_URL}projects/${Math.round(page.total / page.size)}` : null}
           currentPage={page.currentPage}
           totalPages={Math.round(page.total / page.size)}
         />
