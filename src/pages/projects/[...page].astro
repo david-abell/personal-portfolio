@@ -9,7 +9,7 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const collection = (await getCollection('projects')).sort(
     (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
   );
-  return paginate(collection, { pageSize: 2 });
+  return paginate(collection, { pageSize: 9 });
 };
 
 interface Props {
