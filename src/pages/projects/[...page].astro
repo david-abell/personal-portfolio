@@ -2,14 +2,18 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { Card, Pagination } from 'accessible-astro-components';
 
-import { getCollection } from 'astro:content';
-import type { PaginateFunction } from 'astro';
+import type { GetStaticPaths, Page } from 'astro';
+import { CollectionEntry, getCollection } from 'astro:content';
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const collection = (await getCollection('projects')).sort(
+    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  );
+  return paginate(collection, { pageSize: 2 });
+};
 
-export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
-  const collection = await getCollection('projects');
-  return paginate(collection, { pageSize: 6 });
+interface Props {
+  page: Page<CollectionEntry<'projects'>>;
 }
 
 const { page } = Astro.props;
@@ -27,7 +31,7 @@ const { page } = Astro.props;
       <p class="text-sm"><em>Project {page.start + 1} through {page.end + 1} of {page.total} total projects</em></p>
       <ul class="my-3">
         {
-          projects.map((project) => (
+          page.data?.map((project) => (
             <li>
               <Card
                 url={`${import.meta.env.BASE_URL}projects/${project.data.title.replaceAll(' ', '-').toLowerCase()}`}
@@ -44,9 +48,9 @@ const { page } = Astro.props;
       <div class="mt-12 grid place-content-center">
         <Pagination
           firstPage={page.url.prev ? `${import.meta.env.BASE_URL}projects` : null}
-          previousPage={page.url.prev ? page.url.prev : null}
-          nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next ? `${import.meta.env.BASE_URL}projects/${Math.round(page.total / page.size)}` : null}
+          previousPage={page.url.prev ? `${import.meta.env.BASE_URL.slice(0, -1)}${page.url.prev}` : null}
+          nextPage={page.url.next ? `${import.meta.env.BASE_URL.slice(0, -1)}${page.url.next}` : null}
+          lastPage={page.url.next ? `${import.meta.env.BASE_URL}projects/${page.lastPage}` : null}
           currentPage={page.currentPage}
           totalPages={Math.round(page.total / page.size)}
         />
