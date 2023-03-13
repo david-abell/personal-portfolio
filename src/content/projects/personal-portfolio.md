@@ -1,8 +1,15 @@
-# My personal portfolio
-
-![hero-preview-image](./public/img/portfolio-hero.webp)
-
-🚀 [Live Preview](https://david-abell.github.io/personal-portfolio/)
+---
+title: 'My personal porfolio'
+description: 'This site. A showcase of some of my personal work.'
+tech: ['HTML', 'Typescript', 'Astro', 'Git', 'Tailwind', 'SCSS', 'Figma']
+links:
+  {
+    live: 'https://david-abell.github.io/personal-portfolio/',
+    github: 'https://github.com/david-abell/personal-portfolio',
+  }
+pubDate: 'Mar 09 2023'
+images: { hero: 'portfolio-hero.webp', graphic: 'astronaut-hero-img.webp' }
+---
 
 ## Table of Contents
 
@@ -34,7 +41,7 @@ Astro, as a relatively new tool has its share of kinks still to be ironed out.
 - Astro Icon is also just beginning a major update. Some current Iconify icon sets that should be available are just not usable yet.
 - While I loved the work of Mark Teekman with his accessible astro components, they do not currently support Typescript. For the moment I've gone the quick and dirty route of declaring a module with `type any` for the package but that means no type safety on the imported Props until I can write, or somebody else writes, proper types for the package.
 
-## ☕ Thank you!
+## Acknowledgements
 
 Thanks to the accessible astro starter creater Mark Teekman :)
 
