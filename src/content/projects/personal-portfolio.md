@@ -1,5 +1,5 @@
 ---
-title: 'My personal porfolio'
+title: 'My personal portfolio'
 description: 'This site. A showcase of some of my personal work.'
 tech: ['HTML', 'Typescript', 'Astro', 'Git', 'Tailwind', 'SCSS', 'Figma']
 links:
