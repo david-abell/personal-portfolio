@@ -18,6 +18,9 @@ const iconMap = {
   'chart.js': 'ic:round-area-chart',
   'd3.js': 'logos:d3',
   'express.js': 'simple-icons:express',
+  astro: 'simple-icons:astro',
+  scss: 'vscode-icons:file-type-sass',
+  sass: 'vscode-icons:file-type-sass',
 };
 
 export type IconMap = keyof typeof iconMap;
