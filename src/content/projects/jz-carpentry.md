@@ -13,8 +13,7 @@ A landing page showcasing beautiful home and business remodels, and a contact fo
 
 ## Project goal
 
-- To replace a poorly designed wordpress site.
-- Clean, mobile friendly design to drive business engagement.
+To replace a poorly designed wordpress site with a clean, mobile friendly design. A contact form to drive business engagement and minimize spam.
 
 ## Tools used
 
