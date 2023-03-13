@@ -7,12 +7,46 @@ pubDate: 'Aug 09 2022'
 images: { hero: 'wet-eireann-hero.webp', graphic: 'wet-eireann-graphic.svg' }
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+I built this React web app after getting annoyed with how Met Éireann displays weather data. This apps weather components are designed to put precipitation amount front and center so that I can easily know whether its just going to be cloudy with a few drops or pouring buckets.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+Please be patient with load times. The free proxy server can take a while to spin up.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+Places lookup is restricted to the region covered by Met Éireann forecast data covering Ireland and some of the UK.
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+## Project goals
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+- Build a full feature weather app that I could use as a personal weather app.
+- Explore react state management techniqes.
+
+## Technology used
+
+- Met Éireann XML weather API
+- Met Éireann XML warning RSS API
+- cors-anywhere proxy server hosted on ~~heroku~~ `render.com` as Met Éireann apis do not provide cors headers
+- hosted on heroku
+- Create React App
+- react-bootstrap
+- fast-xml-parser
+- luxon dates library
+- Chart.js
+- react-chartjs-2
+- chartjs-plugin-zoom
+- Inkscape for SVG creation
+- SVGR CLI for SVG web prep and React component conversion
+- Google places API
+- React query for data fetch and some global state management
+- Insomnia for troubleshooting Google Maps url queries
+
+## Lessons learned/ problems encountered
+
+- Attempts to add a scrollbar tied to chart pan percentage failed. Successfully added slider control to pan chart at base zoom levels but as chart-plugin-zoom does not expose pan level, there was no way to tie current pan position back to the slider when panning directly from the chart via touch or drag actions. [See the enhancement request: How to get the pan distance/level #627](https://github.com/chartjs/chartjs-plugin-zoom/issues/627).
+- Png sprite sheets didn't scale nicely. After some attempts at svg sprite sheets with symbols not rendering, found SVGR CLI to batch transform invidividual icons into React components.
+- Ran into ID collision caused by the icon set I built off of using linear gradients. Accordians would hide parts of svgs in later components when collapsed...Changed all linear gradients to flat solved the render issues.
+- Having at least some form of global state management using React Query really helped to reduce prop drilling on a few widely used state variables.
+- Setter functions for custom react query hooks don't run in jest when calling the hook with renderHook(). Had to manually set react query cache with `queryClient.setQueryData("somedata)` in order to get tests passing.
+- Cors errors are apparently a thing even when mocking api responses with nock for testing. Took longer than expected to get options preflight and get request headers configured.
+
+## Credits
+
+Weather icons built off of the [Free-Weather-Icons design file](https://dribbble.com/shots/3761552-Free-Weather-Icons) by Alexey Onufriev
+I found Jack Herrington's video [Five Clever Hacks for React-Query and SWR](https://www.youtube.com/watch?v=JaM2rExmmqs) really helpful for implementing some React query state management techniques.

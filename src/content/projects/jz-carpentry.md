@@ -7,12 +7,42 @@ pubDate: 'May 17 2022'
 images: { hero: 'jzcarpentry-hero.webp', graphic: 'jzcarpentry-graphic.svg' }
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+# Landing page for JZ Carpentry
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+A landing page showcasing beautiful home and business remodels, and a contact form for new client inquiries. Designed and built to client specifications.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+## Project goal
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+- To replace a poorly designed wordpress site.
+- Clean, mobile friendly design to drive business engagement.
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+## Tools used
+
+- prototyped with Figma: [JZ Carpentry Prototype](https://www.figma.com/file/ETWAvlJzF8x60tOen8LSKq/JZ-carpentry?node-id=496%3A170)
+
+- I used feature branches and Pull Requests for build stability: [example PR](https://github.com/david-abell/JZCarpentryVT/pull/15)
+- npm package management.
+- wicg-inert for out of focus content.
+- glightbox for a simple, mobile friendly picture gallery.
+- lozad for lazy image loading.
+- eslint and prettier for code formatting.
+- parcel for bundling and build deployment
+- deployments through netlify actions.
+
+## Why I built the project this way
+
+- wicg-inert was the first package installed through NPM. It provides a clean way to disallow page element focus when elements such as the nave menu or gallery are in use.
+
+- The project gallery was designed as a fluid CSS Grid. I decided I did not wish to predefine or scale image sizes. BigPicture was chosen as a simple gallery display tool for its ease of implimentation and its lack of requirement for presized images.
+
+- Parcel-bundler as added to compile node modules for deployment. It was chosen for its build speed and simple setup process compared to bundlers such as webpack. Initially I imported images statically due to Parcel-bundler's incompatiblity with bigPicture's use of a custom attribute `data-bp` for img urls. Parcel was later upgraded to version 2 for node compatibility.
+
+- While testing Parcel 2 to remain compatible with current node versions, I found moritzlaube's Parcel 2 plugin [parcel-transformer-html-datasrc] (https://github.com/moritzlaube/parcel-transformer-html-datasrc) that appeared to use the correct underlying structure I needed to support bigPicture's `data-bp` attributes. Reading parcel docs, I was able to contribute custom options support for moritzlaube's plugin that allowed for out of box support for bigPicture.
+
+- Lozad was chosen to handle lazy image loading of the gallery page to help with SEO and first impactful draws of sight as well as potentially reducing total network usage. Because of my work on the Parcel plugin [parcel-transformer-html-datasrc], lozad's custom data attributes also were seemlessly compatible with the parcel build process.
+
+## If I had more time I would change this
+
+- Set up continuous integration to run the tests and ESLint on every Pull Request
+- Add backend support for client handling of gallery images including add and delete actions.
+- Support file uploads for the contact page while minimizing client costs. netlify costs $19 per month for this form feature and the cost does not currently justify client needs.

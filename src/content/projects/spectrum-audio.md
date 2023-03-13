@@ -7,12 +7,66 @@ pubDate: 'Jan 06 2023'
 images: { hero: 'spectrum-audio-hero.webp', graphic: 'audio-visualizer-graphic .svg' }
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+## Table of Contents
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+---
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+- [General Info](#general-information)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Room for Improvement](#room-for-improvement)
+- [Lessons learned](#lessons-learned)
+- [Acknowledgements](#acknowledgements)
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+## General Information
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+---
+
+This Project began wile experimenting with React and audio spectogram graphs built with D3.js.
+I was curious how React performed with on the fly svg graph generation (not good) compared to Solid.js. I expanded these experiments into this fully functional audio app.
+No third party audio integrations such as Howler.js were used. This lead to both admiration for how powerful the web audio api can be, but also, frustration with some of its limiting factors including long standing chrome bugs.
+Some specific React technology used was a heavy reliance on useCallback and Refs for the custom audio hook as well as less common hooks such as useLayoutEffect as part of the custom hook written to use requestAnimationFrame with React.
+
+## Technologies Used
+
+---
+
+- Vite.js
+- React.js
+- Typescript
+- D3.js svg path generation
+- Zustand state management
+- Uuid for library ids
+- a few functions from Lodash and usehooks-ts such as useInterval and useMediaQuery that weren't worth reinventing the wheel for.
+
+## Features
+
+---
+
+- Audio spectrum displays live track frequency Hz, color coded by decibel range.
+
+## Room for Improvement
+
+---
+
+Room for improvement:
+
+- A button is needed for user to disable the spectogram animation but this may require architectural changes to the useAudio hook...See chrome issue below
+
+## Lessons learned
+
+Include unexpected issues / bugs encountered. How were they resolved?
+
+- Solid.js is by far the better choice for animating svgs in this manner. This does not run well at over 256 svg paths where Solid.js can easily handle 1024 paths at 60fps.
+- Styling range sliders with a before current value color and after current value color is a non trivial problem. Cross browser consistency of pseudo elements is lacking [This stack overflow answer was very helpful](https://stackoverflow.com/a/66802544/19766980)
+- It took a while to figure out the intricacies of audio context and the necessity of handling it as singleton global state shared between player and audio graph.
+- A simple toggle to enable/disable the spectrogram animation turned out to be an architectural nightmare because chrome has a [long standing Issue 429204 from 2014](https://bugs.chromium.org/p/chromium/issues/detail?id=429204) and [github issue](https://github.com/webAudio/web-audio-api/issues/1202). You cannot attach multiple MediaElementAudioSourceNodes to a single `<audio>` element. Disconnect doesn't destory they element or connection...Works great in Firefox!
+- Control flow for calling Play and Pause on the audio api ended up requiring careful management of Refs and promises to not throw exceptions from stale state and interrupted promises. For example: not storing the Play promise in a Ref caused interruptions by pause requests when seeking with the progress bar, while calling play on a new song withing the same action as setting new song state throws a play interrupted by load event exception...
+
+## Acknowledgements
+
+- This project was inspired by Jack Herrington's very cool [60FPS Solid-JS Audio Spectrum Visualizer Project](https://www.youtube.com/watch?v=Xt1dNdJpgw4)
+- All audio tracks from [https://freemusicarchive.org](https://freemusicarchive.org)
+- Quill icons by Casper Lourens.
+
+<!-- ## Contact -->
