@@ -21,6 +21,11 @@ const iconMap = {
   astro: 'simple-icons:astro',
   scss: 'vscode-icons:file-type-sass',
   sass: 'vscode-icons:file-type-sass',
+  docker: 'logos:docker-icon',
+  leaflet: 'simple-icons:leaflet',
+  'next.js': 'simple-icons:nextdotjs',
+  redis: 'logos:redis',
+  sqlite: 'simple-icons:sqlite',
 };
 
 export type IconMap = keyof typeof iconMap;
