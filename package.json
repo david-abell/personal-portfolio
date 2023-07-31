@@ -1,9 +1,9 @@
 {
-  "name": "accessible-astro-starter",
-  "description": "An Accessible Starter Theme for Astro including several accessiblity features and tools to help you build faster.",
-  "version": "2.0.0",
-  "author": "Mark Teekman",
-  "homepage": "https://accessible-astro.dev",
+  "name": "personal-portfolio",
+  "description": "Personal portfolio showcase built with Astro",
+  "version": "1.0.1",
+  "author": "David Abell",
+  "homepage": "https://david-abell.github.io/personal-portfolio/",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,26 +11,25 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.18.2",
-    "@astrojs/partytown": "^1.2.0",
-    "@astrojs/tailwind": "^3.1.1",
+    "@astrojs/partytown": "^1.2.3",
+    "@astrojs/tailwind": "^4.0.0",
     "@tailwindcss/typography": "^0.5.9",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
-    "accessible-astro-components": "^1.6.4",
-    "astro-compress": "^1.1.28",
-    "astro-icon": "^0.8.0",
-    "eslint": "^8.37.0",
-    "eslint-plugin-astro": "^0.26.1",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "accessible-astro-components": "^2.1.0",
+    "astro-compress": "^1.1.50",
+    "astro-icon": "^0.8.1",
+    "eslint": "^8.46.0",
+    "eslint-plugin-astro": "^0.28.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "prettier": "^2.8.7",
-    "prettier-plugin-astro": "^0.8.0",
-    "prettier-plugin-tailwindcss": "^0.2.6",
-    "sass": "^1.60.0",
-    "svgo": "^2.8.0",
-    "tailwindcss": "^3.3.1"
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.11.0",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "sass": "^1.64.1",
+    "svgo": "^3.0.2",
+    "tailwindcss": "^3.3.3"
   },
   "dependencies": {
-    "astro": "^2.1.9"
+    "astro": "^2.9.6"
   }
 }
