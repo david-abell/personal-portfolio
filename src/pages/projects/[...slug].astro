@@ -31,13 +31,15 @@ const { Content } = await project.render();
       </Breadcrumbs>
     </div>
   </div>
-  <section class="my-12">
-    <div class="space-content container">
-      <h1 class="text-6xl">{title}</h1><br />
-      <h2 class="text-3xl">{description}</h2>
+  <section class="my-12 container">
+    <div class="space-content">
+      <div class="prose dark:prose-invert md:prose-lg lg:prose-xl">
+        <h1 class="text-6xl">{title}</h1>
+        <h2 class="text-3xl">{description}</h2>
+      </div>
       <p>{(<FormattedDate date={pubDate} />)}</p>
-      <img class="elevation-300 radius-large" src={`${import.meta.env.BASE_URL}img/${images.hero}`} alt="description" />
-      <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
+      <img class="radius-large max-h-96" src={`${import.meta.env.BASE_URL}img/${images.hero}`} alt="description" />
+      <ul class="my-12 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
         {
           tech.sort().map((el) => (
             <li class="min-w-fit pr-4">
@@ -49,7 +51,7 @@ const { Content } = await project.render();
           ))
         }
       </ul>
-      <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
+      <ul class="my-12 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
         <li class="min-w-fit pr-4">
           <a href={links.github}>View code on Github</a>
         </li>
@@ -63,8 +65,8 @@ const { Content } = await project.render();
       </ul>
     </div>
   </section>
-  <section class="my-12">
-    <div class="container prose dark:prose-invert md:prose-lg lg:prose-xl">
+  <section class="my-12 container">
+    <div class="prose dark:prose-invert md:prose-lg lg:prose-xl">
       <Content />
     </div>
   </section>
