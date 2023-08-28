@@ -31,45 +31,47 @@ const { Content } = await project.render();
       </Breadcrumbs>
     </div>
   </div>
-  <section class="my-12 container">
-    <div class="mx-auto prose dark:prose-invert md:prose-lg lg:prose-xl">
-      <div class="mx-auto">
-        <h1 class="text-6xl">{title}</h1>
-        <h2 class="text-3xl">{description}</h2>
+  <div class="relative">
+    <section class="my-12 container">
+      <div class="mx-auto prose dark:prose-invert md:prose-lg lg:prose-xl">
+        <div class="mx-auto">
+          <h1 class="text-6xl">{title}</h1>
+          <h2 class="text-3xl">{description}</h2>
+        </div>
+        <p>{(<FormattedDate date={pubDate} />)}</p>
+        <img class="radius-large mx-auto" src={`${import.meta.env.BASE_URL}img/${images.hero}`} alt="description" />
+        <ul class="my-12 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
+          {
+            tech.sort().map((el) => (
+              <li class="min-w-fit pr-4">
+                <span>
+                  <Icon name={iconMap[el.toLowerCase() as IconMap] || 'ic:round-flag-circle'} class="inline h-6" />
+                </span>
+                <span class="">{el}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <ul class="my-12 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
+          <li class="min-w-fit pr-4">
+            <a href={links.github}>View code on Github</a>
+          </li>
+          {
+            links.live && (
+              <li class="min-w-fit pr-4">
+                <a href={links.live}>See it live</a>
+              </li>
+            )
+          }
+        </ul>
       </div>
-      <p>{(<FormattedDate date={pubDate} />)}</p>
-      <img class="radius-large mx-auto" src={`${import.meta.env.BASE_URL}img/${images.hero}`} alt="description" />
-      <ul class="my-12 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
-        {
-          tech.sort().map((el) => (
-            <li class="min-w-fit pr-4">
-              <span>
-                <Icon name={iconMap[el.toLowerCase() as IconMap] || 'ic:round-flag-circle'} class="inline h-6" />
-              </span>
-              <span class="">{el}</span>
-            </li>
-          ))
-        }
-      </ul>
-      <ul class="my-12 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
-        <li class="min-w-fit pr-4">
-          <a href={links.github}>View code on Github</a>
-        </li>
-        {
-          links.live && (
-            <li class="min-w-fit pr-4">
-              <a href={links.live}>See it live</a>
-            </li>
-          )
-        }
-      </ul>
-    </div>
-  </section>
-  <section class="my-12 container">
-    <div class="prose dark:prose-invert md:prose-lg lg:prose-xl mx-auto">
-      <Content />
-    </div>
-  </section>
+    </section>
+    <section class="my-12 container">
+      <div class="prose dark:prose-invert md:prose-lg lg:prose-xl mx-auto">
+        <Content />
+      </div>
+    </section>
+  </div>
 </DefaultLayout>
 
 <style lang="scss">
@@ -86,5 +88,18 @@ const { Content } = await project.render();
     @media (min-width: 950px) {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  :global(.toc-level-1 .toc-item) {
+    list-style-type: decimal;
+    display: list-item;
+    list-style-position: inside;
+  }
+
+  :global(.toc-level-2 .toc-item) {
+    padding-left: 1rem;
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
   }
 </style>
