@@ -8,15 +8,7 @@ module.exports = {
         DEFAULT: '1rem',
       },
     },
-    extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: '65ch',
-          },
-        },
-      },
-    },
+    extend: {},
   },
   plugins: [require('@tailwindcss/typography')],
   darkMode: ['class', '.darkmode'],
