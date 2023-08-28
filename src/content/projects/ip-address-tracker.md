@@ -11,22 +11,13 @@ pubDate: 'May 17 2022'
 images: { hero: 'ip-tracker-hero.webp', graphic: 'leaflet-graphic.svg' }
 ---
 
-# Frontend Mentor - IP address tracker solution
+## Frontend Mentor - IP address tracker solution
 
 This is my solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 Built with HTML, CSS, Leaflet.js, and Express.js server for proxy and rate limit of https://geo.ipify.org API
 
 If the map does not load it is because API is rate limited by the Express Proxy to 5 requests per 15 minutes so that limited API credits aren't used up too quickly.
-
-## Table of contents
-
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
 
 ## Overview
 

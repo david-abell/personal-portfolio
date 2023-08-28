@@ -7,16 +7,6 @@ pubDate: 'June 16 2023'
 images: { hero: 'transport-hero.webp', graphic: 'tranpsort-graphic.webp' }
 ---
 
-## Table of Contents
-
----
-
-- [General Info](#general-information)
-- [Features](#features)
-- [Room for Improvement](#room-for-improvement)
-- [Lessons learned](#lessons-learned)
-<!-- - [Acknowledgements](#acknowledgements) -->
-
 ## General Information
 
 This is an easy to use alternative to the TFI Live transit App.

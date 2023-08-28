@@ -7,7 +7,7 @@ pubDate: 'May 17 2022'
 images: { hero: 'jzcarpentry-hero.webp', graphic: 'jzcarpentry-graphic.svg' }
 ---
 
-# Landing page for JZ Carpentry
+## Landing page for JZ Carpentry
 
 A landing page showcasing beautiful home and business remodels, and a contact form for new client inquiries. Designed and built to client specifications.
 
