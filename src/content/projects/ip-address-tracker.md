@@ -7,7 +7,7 @@ links:
     live: 'https://david-abell.github.io/ip-address-tracker/',
     github: 'https://github.com/david-abell/ip-address-tracker',
   }
-pubDate: 'May 17 2022'
+pubDate: 'March 09 2023'
 images: { hero: 'ip-tracker-hero.webp', graphic: 'leaflet-graphic.svg' }
 ---
 
