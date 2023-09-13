@@ -1,7 +1,7 @@
 {
   "name": "personal-portfolio",
   "description": "Personal portfolio showcase built with Astro",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "David Abell",
   "homepage": "https://david-abell.github.io/personal-portfolio/",
   "scripts": {
@@ -11,8 +11,9 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.2.0",
     "@astrojs/partytown": "^1.2.3",
-    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/tailwind": "^5.0.0",
     "@tailwindcss/typography": "^0.5.9",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
@@ -27,13 +28,13 @@
     "rehype-slug": "^5.1.0",
     "rehype-stringify": "^10.0.0",
     "rehype-toc": "^3.0.2",
+    "remark-emoji": "^4.0.0",
     "sass": "^1.64.1",
     "svgo": "^2.8.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
-    "astro": "^2.9.6",
-    "astro-compress": "^2.0.14",
-    "remark-emoji": "^4.0.0"
+    "astro": "^3.0.13"
   }
 }
