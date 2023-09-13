@@ -35,35 +35,41 @@ const { Content } = await project.render();
     <section class="my-12 container">
       <div class="mx-auto max-w-3xl space-content">
         <div class="mx-auto">
-          <h1 class="text-6xl leading-relaxed">{title}</h1>
-          <h2 class="text-2xl">{description}</h2>
+          <h1 class="text-4xl md:text-6xl leading-relaxed md:leading-relaxed">{title}</h1>
+          <p class="text-xl md:text-3xl italic">{description}</p>
         </div>
         <p>{(<FormattedDate date={pubDate} />)}</p>
-        <img class="radius-large mx-auto" src={`${import.meta.env.BASE_URL}/img/${images.hero}`} alt="description" />
-        <ul class="grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
-          {
-            tech.sort().map((el) => (
-              <li class="min-w-fit pr-4">
-                <span>
-                  <Icon name={iconMap[el.toLowerCase() as IconMap] || 'ic:round-flag-circle'} class="inline h-6" />
-                </span>
-                <span class="">{el}</span>
-              </li>
-            ))
-          }
-        </ul>
-        <ul class="grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
-          <li class="min-w-fit pr-4">
-            <a href={links.github}>View code on Github</a>
+        <ul class="grid-cols-2 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8 mx-auto mt-6">
+          <li class="min-w-fit pr-4 flex flex-row items-center -ml-1">
+            <Icon pack="ion" name="logo-github" class="h-8 mr-2" />
+            <a href={links.github}>Project code</a>
           </li>
           {
             links.live && (
-              <li class="min-w-fit pr-4">
-                <a href={links.live}>See this project</a>
+              <li class="min-w-fit pr-4 flex flex-row items-center">
+                <a href={links.live}>_Live_</a>
               </li>
             )
           }
         </ul>
+        <ul
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-y-2 gap-x-4 border-t-2 border-b-2 py-4 border-gray-100 dark:border-gray-600"
+        >
+          {
+            tech.sort().map((el) => (
+              <li class="flex flex-row justify-start items-center">
+                <span>
+                  <Icon
+                    name={iconMap[el.toLowerCase() as IconMap] || 'ic:round-flag-circle'}
+                    class="inline-block h-8"
+                  />
+                </span>
+                <span class="ml-2">{el}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <img class="mx-auto" src={`${import.meta.env.BASE_URL}/img/${images.hero}`} alt="description" />
       </div>
     </section>
     <section class="container">
@@ -77,21 +83,6 @@ const { Content } = await project.render();
 </DefaultLayout>
 
 <style lang="scss">
-  ul {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 4rem;
-
-    @media (min-width: 550px) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 2rem;
-    }
-
-    @media (min-width: 950px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
   :global(.toc-level-1 .toc-item) {
     list-style-type: decimal;
     display: list-item;
