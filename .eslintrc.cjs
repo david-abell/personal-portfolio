@@ -28,5 +28,5 @@ module.exports = {
         extraFileExtensions: ['.astro'],
       },
     },
-  ]
+  ],
 };
