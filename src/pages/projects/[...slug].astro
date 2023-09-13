@@ -26,7 +26,7 @@ const { Content } = await project.render();
     <div class="mt-12">
       <Breadcrumbs>
         <BreadcrumbsItem href={`${import.meta.env.BASE_URL}`} label="Home" />
-        <BreadcrumbsItem href={`${import.meta.env.BASE_URL}projects`} label="Projects" />
+        <BreadcrumbsItem href={`${import.meta.env.BASE_URL}/projects`} label="Projects" />
         <BreadcrumbsItem currentPage={true} label={title} />
       </Breadcrumbs>
     </div>
@@ -39,7 +39,7 @@ const { Content } = await project.render();
           <h2 class="text-2xl">{description}</h2>
         </div>
         <p>{(<FormattedDate date={pubDate} />)}</p>
-        <img class="radius-large mx-auto" src={`${import.meta.env.BASE_URL}img/${images.hero}`} alt="description" />
+        <img class="radius-large mx-auto" src={`${import.meta.env.BASE_URL}/img/${images.hero}`} alt="description" />
         <ul class="grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
           {
             tech.sort().map((el) => (
