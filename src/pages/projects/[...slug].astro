@@ -3,9 +3,9 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components';
 import { Icon } from 'astro-icon';
 
-import { CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
-import iconMap, { IconMap } from '../../assets/img/iconMap';
+import iconMap, { type IconMap } from '../../assets/img/iconMap';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
