@@ -32,7 +32,7 @@
     "tailwindcss": "^3.3.3"
   },
   "dependencies": {
-    "astro": "^2.9.6",
+    "astro": "^3.0.13",
     "astro-compress": "^2.0.14",
     "remark-emoji": "^4.0.0"
   }
