@@ -100,15 +100,15 @@ While the above code was simple to write compared to event based streams, it was
 
 And this was while just reading and discarding the data! It doesn't include the actual database inserts.
 
-This article by Dan Vanderkam [here](https://medium.com/netscape/async-iterators-these-promises-are-killing-my-performance-4767df03d85b) covers the problem in more detail. The short version is that creating and resolving a promise for each line entry causes significant overhead. And, while performance in node has both improved and is still actively being worked on (see the on-going discussion [Performance of for await of (async iteration)](https://github.com/nodejs/node/issues/31979)), it has not improved enough to use for this project.
+This article by Dan Vanderkam [here](https://medium.com/netscape/async-iterators-these-promises-are-killing-my-performance-4767df03d85b) covers the problem in more detail. The short version is that creating and resolving a promise for each line entry causes significant overhead. And, while performance in node has both improved and [is still actively being worked on](https://github.com/nodejs/node/issues/31979), it has not improved enough to use for this project.
 
 ## Logging and SQL
 
 ### Logging surprises
 
-Visible feedback is important for long running tasks to show that something hasn't gotten stuck. But logging also has its own performance impact. Don't, as I did on the first iteration of this project, take the naive approach of logging every event if you are parsing 13 million records...Lets just say I was **very** happy when I fixed this error.
+Visible feedback is important for long running tasks to show that something hasn't gotten stuck. Logging with `console.log` etc. unfortunately has its own performance impact. Don't, as I did on the first iteration of this project, take the naive approach of logging every event if you are parsing 13 million records...Lets just say I was **very** happy when I fixed that error.
 
-How much performance impact can it have? In retrospective analysis PapaParse takes 54 seconds to parse 13M records when only logging the completion of each csv file (this dataset has 8 files, 6 small, two 300 KB+, depending on the week). Batching these log events to near SQLite's transaction variable limit (which is required when actually inserting into a database) increased parse time to 65 seconds. Logging every event took 2446 seconds...40 minutes of my time wasted for science. Not counting my time wasted before I found this bug.
+How much performance impact can it have? PapaParse takes just 54 seconds to parse 13M records when only logging the completion of each csv file (this dataset has 8 files, 6 small, two 300 KB+, depending on the week). Batching these log events to near SQLite's transaction variable limit (which is required when actually inserting into a database) increased parse time to 65 seconds. Logging every event took 2446 seconds...40 minutes of my time wasted for science. Not counting my time wasted before I found this bug. This does not include database insert or doing anything at all with the parsed data. 39 minutes is spent just logging lines to the console.
 
 ### SQLite Pragma
 
@@ -150,7 +150,7 @@ JOURNAL_MODE, SYNCHRONOUS, and CACHE_SIZE were the winners here. Now I was final
 
 #### Impact of Cache size on memory usage
 
-Cache size effects how many database pages can be held in memory for an open database. Proper settings are dependent on your hardware or service. I did not play around with these settings in any great detail more than the obvious _works on my system_ and also, importantly, _works on my deployment_ and saved around 80 seconds at the expense of a noticeable increase in memory usage. I'll leave any further explanation of the setting details to the [_official docs_](https://www.sqlite.org/pragma.html#pragma_cache_size).
+Cache size effects how many database pages can be held in memory for an open database. Proper settings are dependent on your hardware or service. I did not play around with these settings in any great detail more than the obvious _works on my system_ and also, importantly, _works on my deployment_. It saved around 80 seconds at the expense of a noticeable increase in memory usage. I'll leave any further explanation of the setting details to the [_official docs_](https://www.sqlite.org/pragma.html#pragma_cache_size).
 
 | Parser    | Pragma                | Max memory | total seconds |
 | --------- | --------------------- | ---------- | ------------- |
