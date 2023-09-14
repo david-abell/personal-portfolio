@@ -11,11 +11,11 @@ images: { hero: 'code.png', graphic: 'csv-to-sql.svg' }
 
 Importing CSV files is a commonly encountered database operation. This project was an exploration of performance impacts I encountered while writing a node script to automate the import of General Transit Feed Specification [GTFS](https://gtfs.org) CSV files (often 13 million plus lines) into a SQLite database.
 
-Some of the CVS files are too large to load in memory so using Node.js streams was necessary. I tested import parsing performance of Node.js stream events using two popular CSV parsing libraries: [csv-parse for Node.js](https://csv.js.org/parse/), and [PapaParse](https://www.papaparse.com). With PapaParse, I also tested code using `pipeline` with the async iterator `for await (const line of lines){ //do something with line...}`.
+Some of the CVS files in this dataset can be quite large so using Node.js streams was necessary. I tested import parsing performance of Node.js stream events using two popular CSV parsing libraries: [csv-parse for Node.js](https://csv.js.org/parse/), and [PapaParse](https://www.papaparse.com). With PapaParse, I also tested code using `pipeline` with the async iterator `for await (const line of lines){ //do something with line...}`.
 
-I also explored the performance impact of logging during long running operations, a few oft recommended SQL PRAGMA settings, and a variety of batch sizes for database inserts.
+I also explored the performance issues caused by frequent logging during long running operations, a few commonly recommended SQL PRAGMA settings, and the advantages of larger batch sizes for database inserts.
 
-I used lessons learned from this project to keep the vehicle schedule database used by [**this project**](https://github.com/david-abell/transit-tracker), [live here](https://transit-tracker.fly.dev) in sync with Transport for Ireland (TFI)'s public transport schedule. This was done using a Github workflow triggered nightly, and on push/merge events to the repo main branch.
+I used the code, and lessons learned from this project to keep the vehicle schedule database used by [**this project**](https://github.com/david-abell/transit-tracker), [live here](https://transit-tracker.fly.dev) in sync with Transport for Ireland (TFI)'s public transport schedule. This was done using a Github workflow triggered nightly, and by push events to the repo's main branch.
 
 ## Testing CSV import performance
 
@@ -161,7 +161,7 @@ Cache size effects how many database pages can be held in memory for an open dat
 
 ## Batching SQLite inserts
 
-The last impact I explored was batching database inserts. The TLDR here is that as long as you are under the SQLite max variable limit (32766 for SQLite versions after 3.32.0), larger batches is better.
+The last impact I explored was batching database inserts. The TLDR here is that as long as you are under the SQLite max variable limit (32766 for SQLite versions after 3.32.0), larger batches are better.
 
 ### Partial dataset 330k records
 
