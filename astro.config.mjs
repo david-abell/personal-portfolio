@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import emoji from 'remark-emoji';
+import { remarkReadingTime } from './src/lib/plugins/remark-reading-time.mjs';
 // import rehypeToc from 'rehype-toc';
 // import rehypeSlug from 'rehype-slug';
 
@@ -12,7 +13,7 @@ export default defineConfig({
   site: 'https://david-abell.github.io',
   base: BASE_URL,
   markdown: {
-    remarkPlugins: [[emoji, { accessible: true }]],
+    remarkPlugins: [[emoji, { accessible: true }], remarkReadingTime],
     // rehypePlugins: [
     //   rehypeSlug,
     //   [

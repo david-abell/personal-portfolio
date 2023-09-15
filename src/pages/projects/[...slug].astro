@@ -18,7 +18,7 @@ type Props = CollectionEntry<'projects'>;
 
 const project = Astro.props;
 const { title, description, tech, links, pubDate, images } = project.data;
-const { Content } = await project.render();
+const { Content, remarkPluginFrontmatter } = await project.render();
 ---
 
 <DefaultLayout title={title} description={description} url={title}>
@@ -38,7 +38,10 @@ const { Content } = await project.render();
           <h1 class="text-4xl md:text-6xl leading-relaxed md:leading-relaxed">{title}</h1>
           <p class="text-xl md:text-3xl italic">{description}</p>
         </div>
-        <p>{(<FormattedDate date={pubDate} />)}</p>
+        <div class="flex">
+          <p>{(<FormattedDate date={pubDate} />)}</p>
+          <p class="list-item ml-8">{remarkPluginFrontmatter.minutesRead}</p>
+        </div>
         <ul class="grid-cols-2 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8 mx-auto mt-6">
           <li class="min-w-fit pr-4 flex flex-row items-center -ml-1">
             <Icon pack="ion" name="logo-github" class="h-8 mr-2" />
