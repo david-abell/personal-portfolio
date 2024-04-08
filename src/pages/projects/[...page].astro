@@ -3,11 +3,11 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { Card, Pagination } from 'accessible-astro-components';
 
 import type { GetStaticPaths, Page } from 'astro';
-import { CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const collection = (await getCollection('projects')).sort(
-    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   );
   return paginate(collection, { pageSize: 9 });
 };
@@ -34,10 +34,10 @@ const { page } = Astro.props;
           page.data?.map((project) => (
             <li>
               <Card
-                url={`${import.meta.env.BASE_URL}projects/${project.slug}`}
+                url={`${import.meta.env.BASE_URL}/projects/${project.slug}`}
                 title={project.data.title}
                 footer={''}
-                img={`${import.meta.env.BASE_URL}img/${project.data.images.hero}`}
+                img={`${import.meta.env.BASE_URL}/img/${project.data.images.hero}`}
               >
                 {project.data.description}
               </Card>
@@ -47,10 +47,10 @@ const { page } = Astro.props;
       </ul>
       <div class="mt-12 grid place-content-center">
         <Pagination
-          firstPage={page.url.prev ? `${import.meta.env.BASE_URL}projects` : null}
+          firstPage={page.url.prev ? `${import.meta.env.BASE_URL}/projects` : null}
           previousPage={page.url.prev ? `${import.meta.env.BASE_URL.slice(0, -1)}${page.url.prev}` : null}
           nextPage={page.url.next ? `${import.meta.env.BASE_URL.slice(0, -1)}${page.url.next}` : null}
-          lastPage={page.url.next ? `${import.meta.env.BASE_URL}projects/${page.lastPage}` : null}
+          lastPage={page.url.next ? `${import.meta.env.BASE_URL}/projects/${page.lastPage}` : null}
           currentPage={page.currentPage}
           totalPages={Math.round(page.total / page.size)}
         />

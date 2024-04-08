@@ -20,7 +20,7 @@ const {
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- favicon -->
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}img/favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/img/favicon.svg`} />
 
     <SiteMeta
       title={title}
@@ -31,10 +31,12 @@ const {
       image={image}
       author={author}
     />
+    <!-- analytics -->
+    <script data-goatcounter="https://david-abell.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
     <Header />
-    <main id="main-content">
+    <main id="main-content" class="container max-w-7xl">
       <slot />
     </main>
     <Footer />

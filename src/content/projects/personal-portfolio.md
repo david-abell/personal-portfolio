@@ -11,19 +11,9 @@ pubDate: 'Mar 09 2023'
 images: { hero: 'portfolio-hero.webp', graphic: 'astronaut-hero-img.webp' }
 ---
 
-## Table of Contents
+## About
 
----
-
-- [General Info](#general-information)
-- [Features](#features)
-- [Room for Improvement](#room-for-improvement)
-- [Lessons learned](#lessons-learned)
-- [Acknowledgements](#acknowledgements)
-
-## General Information
-
-I turned to Astro for my personal portfolio for its reusable component design, lighning fast content delivery, and built in support for Typescript.
+I turned to Astro for my personal portfolio for its reusable component design, lightning fast content delivery, and built in support for Typescript.
 
 ## Features
 
@@ -31,7 +21,7 @@ Using Astro's layouts is a godsend for improved development speed and single sou
 
 ## Room for Improvement
 
-- They eye tracking animation is fun but it needs depth! There is no way I wouldn't be crosseyed with a mouse shoved right in my face :)
+- They eye tracking animation is fun but it needs depth! There is no way I wouldn't be cross-eyed with a mouse shoved right in my face :)
 
 ## Lessons learned
 
@@ -43,7 +33,7 @@ Astro, as a relatively new tool has its share of kinks still to be ironed out.
 
 ## Acknowledgements
 
-Thanks to the accessible astro starter creater Mark Teekman :)
+Thanks to the accessible astro starter creator Mark Teekman :)
 
 Design inspirations from Fred Nerby, Rob Owen, and Will Boyd
 

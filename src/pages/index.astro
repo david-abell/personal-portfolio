@@ -47,25 +47,25 @@ const projects = (await getCollection('projects'))
           const { hero, graphic } = project.data.images;
           return (
             <>
-              <ContentMedia
-                imgSrc={`${import.meta.env.BASE_URL}img/${hero}`}
-                graphicSrc={graphic ? `${import.meta.env.BASE_URL}img/${graphic}` : ''}
-                reverseImg
-              >
-                <p class="uppercase">Project</p>
-                <h3 class="align-middle text-6xl">{project.data.title}</h3>
-                <h4>
-                  <FormattedDate date={project.data.pubDate} />
-                </h4>
-                <p class="text-3xl">{description}</p>
-                <a href={`${import.meta.env.BASE_URL}projects/${project.slug}`} class="uppercase !no-underline">
+              <a href={`${import.meta.env.BASE_URL}/projects/${project.slug}`} class="uppercase !no-underline">
+                <ContentMedia
+                  imgSrc={`${import.meta.env.BASE_URL}/img/${hero}`}
+                  graphicSrc={graphic ? `${import.meta.env.BASE_URL}/img/${graphic}` : ''}
+                  reverseImg
+                >
+                  <p class="uppercase">Project</p>
+                  <h3 class="align-middle text-6xl">{project.data.title}</h3>
+                  <h4>
+                    <FormattedDate date={project.data.pubDate} />
+                  </h4>
+                  <p class="text-3xl">{description}</p>
                   Explore
-                  <Icon name="arrow" class="ml-5 inline h-4" />
-                </a>
-              </ContentMedia>
-              <div class="container">
-                <hr />
-              </div>
+                  <Icon name="arrow" class="inline-block h-4 self-start" />
+                </ContentMedia>
+                <div class="container">
+                  <hr />
+                </div>
+              </a>
             </>
           );
         })
@@ -73,7 +73,7 @@ const projects = (await getCollection('projects'))
     </div>
   </section>
 
-  <section class="mb-64">
+  <!-- <section class="mb-64">
     <div class="container">
       <h2 class="mb-16 text-6xl">Technologies</h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6">
@@ -88,7 +88,7 @@ const projects = (await getCollection('projects'))
         <SmallFeature icon="mdi:git" title="Git" />
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- <section class="mt-64 mb-32">
     <div class="container">

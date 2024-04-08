@@ -3,9 +3,9 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components';
 import { Icon } from 'astro-icon';
 
-import { CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
-import iconMap, { IconMap } from '../../assets/img/iconMap';
+import iconMap, { type IconMap } from '../../assets/img/iconMap';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -18,7 +18,7 @@ type Props = CollectionEntry<'projects'>;
 
 const project = Astro.props;
 const { title, description, tech, links, pubDate, images } = project.data;
-const { Content } = await project.render();
+const { Content, remarkPluginFrontmatter } = await project.render();
 ---
 
 <DefaultLayout title={title} description={description} url={title}>
@@ -26,63 +26,76 @@ const { Content } = await project.render();
     <div class="mt-12">
       <Breadcrumbs>
         <BreadcrumbsItem href={`${import.meta.env.BASE_URL}`} label="Home" />
-        <BreadcrumbsItem href={`${import.meta.env.BASE_URL}projects`} label="Projects" />
+        <BreadcrumbsItem href={`${import.meta.env.BASE_URL}/projects`} label="Projects" />
         <BreadcrumbsItem currentPage={true} label={title} />
       </Breadcrumbs>
     </div>
   </div>
-  <section class="my-12">
-    <div class="space-content container">
-      <h1 class="text-6xl">{title}</h1><br />
-      <h2 class="text-3xl">{description}</h2>
-      <p>{(<FormattedDate date={pubDate} />)}</p>
-      <img class="elevation-300 radius-large" src={`${import.meta.env.BASE_URL}img/${images.hero}`} alt="description" />
-      <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
-        {
-          tech.sort().map((el) => (
-            <li class="min-w-fit pr-4">
-              <span>
-                <Icon name={iconMap[el.toLowerCase() as IconMap] || 'ic:round-flag-circle'} class="inline h-6" />
-              </span>
-              <span class="">{el}</span>
-            </li>
-          ))
-        }
-      </ul>
-      <ul class="my-24 grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8">
-        <li class="min-w-fit pr-4">
-          <a href={links.github}>View code on Github</a>
-        </li>
-        {
-          links.live && (
-            <li class="min-w-fit pr-4">
-              <a href={links.live}>See it live</a>
-            </li>
-          )
-        }
-      </ul>
-    </div>
-  </section>
-  <section class="my-12">
-    <div class="container prose dark:prose-invert md:prose-lg lg:prose-xl">
-      <Content />
-    </div>
-  </section>
+  <div class="relative">
+    <section class="my-12 container">
+      <div class="mx-auto max-w-3xl space-content">
+        <div class="mx-auto">
+          <h1 class="text-4xl md:text-6xl leading-relaxed md:leading-relaxed">{title}</h1>
+          <p class="text-xl md:text-3xl italic">{description}</p>
+        </div>
+        <div class="flex">
+          <p>{(<FormattedDate date={pubDate} />)}</p>
+          <p class="list-item ml-8">{remarkPluginFrontmatter.minutesRead}</p>
+        </div>
+        <ul class="grid-cols-2 sm:grid-cols-3 md:flex lg:grid-cols-4 xl:grid-cols-8 mx-auto mt-6">
+          <li class="min-w-fit pr-4 flex flex-row items-center -ml-1">
+            <Icon pack="ion" name="logo-github" class="h-8 mr-2" />
+            <a href={links.github}>Project code</a>
+          </li>
+          {
+            links.live && (
+              <li class="min-w-fit pr-4 flex flex-row items-center">
+                <a href={links.live}>_Live_</a>
+              </li>
+            )
+          }
+        </ul>
+        <ul
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-y-2 gap-x-4 border-t-2 border-b-2 py-4 border-gray-100 dark:border-gray-600"
+        >
+          {
+            tech.sort().map((el) => (
+              <li class="flex flex-row justify-start items-center">
+                <span>
+                  <Icon
+                    name={iconMap[el.toLowerCase() as IconMap] || 'ic:round-flag-circle'}
+                    class="inline-block h-8"
+                  />
+                </span>
+                <span class="ml-2">{el}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <img class="mx-auto" src={`${import.meta.env.BASE_URL}/img/${images.hero}`} alt="description" />
+      </div>
+    </section>
+    <section class="container">
+      <div
+        class="prose dark:prose-invert md:prose-lg lg:prose-xl mx-auto prose-code:before:hidden prose-code:after:hidden"
+      >
+        <Content />
+      </div>
+    </section>
+  </div>
 </DefaultLayout>
 
 <style lang="scss">
-  ul {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 4rem;
+  :global(.toc-level-1 .toc-item) {
+    list-style-type: decimal;
+    display: list-item;
+    list-style-position: inside;
+  }
 
-    @media (min-width: 550px) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 2rem;
-    }
-
-    @media (min-width: 950px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  :global(.toc-level-2 .toc-item) {
+    padding-left: 1rem;
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
   }
 </style>
