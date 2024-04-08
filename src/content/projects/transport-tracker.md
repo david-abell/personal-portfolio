@@ -1,10 +1,10 @@
 ---
 title: 'Public transport tracker'
-description: 'An easy to use alternative to the TFI Live transit App'
+description: 'An easy to use alternative to the TFI Live transport App'
 tech: ['React', 'Next.JS', 'Typescript', 'Git', 'Tailwind', 'Leaflet', 'SQLite', 'Docker', 'Redis']
-links: { live: 'https://transit-tracker.fly.dev', github: 'https://github.com/david-abell/transit-tracker' }
+links: { live: 'https://busfinder.fly.dev', github: 'https://github.com/david-abell/transit-tracker' }
 pubDate: 'June 16 2023'
-images: { hero: 'transport-hero.webp', graphic: 'tranpsort-graphic.webp' }
+images: { hero: 'transport-hero.webp', graphic: 'transport-graphic.webp' }
 ---
 
 ## Table of Contents
@@ -19,12 +19,12 @@ images: { hero: 'transport-hero.webp', graphic: 'tranpsort-graphic.webp' }
 
 ## General Information
 
-This is an easy to use alternative to the TFI Live transit App.
+This is an easy to use alternative to the TFI Live transport App.
 
 ## Features
 
 - Search public bus and train schedules across Ireland for their favorite travel routes.
-- Save favorite transit stops for quick future access.
+- Save favorite transport stops for quick future access.
 - View scheduled and real arrival estimates for upcoming trains and buses. No more wondering when your bus is actually supposed to arrive.
 - Select trips to display current or estimated train or bus positions.
 
